@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "description": "Portfolio von Anas Attoum, einem Front-End-Entwickler, der sich auf React.js, Next.js und Tailwind CSS spezialisiert hat. Präsentieren Sie Projekte, Fähigkeiten und Berufserfahrung."
+  },
+  "home": "Startseite",
+  "about": "Über mich",
+  "skills": "Fähigkeiten",
+  "projects": "Projekte",
+  "contact": "Kontakt",
+  "hi": "Hallo, Ich bin",
+  "front-end-dev": "Ein Front-End Webentwickler",
+  "lets-work-together": "Lass uns zusammenarbeiten",
+  "download-cv": "Lebenslauf herunterladen",
+  "show-cv": "Lebenslauf anzeigen",
+  "bit": "Ein bisschen über mich",
+  "about-me": "Ich war schon immer fasziniert davon, wie Website-Oberflächen gestaltet werden, was meine Reise in die Front-End-Entwicklung inspirierte. Ich begann damit, meine Fähigkeiten im Webdesign mit Figma zu verfeinern und kreative Ideen in ansprechende Visualisierungen umzusetzen. Um diese Designs zum Leben zu erwecken, konzentrierte ich mich darauf, React.js und Next.js zu meistern, wodurch ich interaktive und dynamische Webseiten erstellen kann. Als IT-Ingenieur bin ich bestrebt, kontinuierlich neue Technologien und Techniken zu erlernen, um Benutzererlebnisse zu verbessern und innovative, hochwertige Weblösungen zu entwickeln.",
+  "love": "Was ich liebe",
+  "did": "Was ich gemacht habe",
+  "all": "Alle",
+  "pages": "Seiten",
+  "games": "Spiele",
+  "components": "Komponenten",
+  "more-details": "Mehr Details",
+  "more-projects": "Weitere Projekte ...",
+  "contact-me": "Kontaktiere mich",
+  "lets-connect": "Lass uns verbinden! <br></br> und etwas Großartiges zusammen schaffen",
+  "drop-message": "Ich suche derzeit nach neuen Möglichkeiten, sei es in Teilzeit oder Vollzeit. Mein Posteingang ist immer offen.<br></br> Schreib mir eine Nachricht!",
+  "code-with": "Code mit ❤️",
+  "name": "Name",
+  "email": "Email",
+  "message": "Nachricht",
+  "submit": "Absenden",
+  "back": "Zurück",
+  "code": "Code",
+  "demo": "Demo",
+  "other": "Andere",
+  "overview": "Übersicht",
+  "code-by": "Code mit ❤️ von",
+  "page-not-found": "Seite nicht gefunden",
+  "oops": "Ups! Die Seite, die du suchst, existiert nicht oder wurde verschoben. Lass uns dich zurück auf den richtigen Weg bringen.",
+  "go-to-homepage": "Zur Startseite",
+  "toaster": {
+    "success": "Danke! Ihre Nachricht wurde erfolgreich gesendet.",
+    "error": "Hoppla! Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut."
+  },
+  "validation": {
+    "required": "Erforderlich",
+    "invalid-email": "Ungültige E-Mail-Adresse"
+  }
+}

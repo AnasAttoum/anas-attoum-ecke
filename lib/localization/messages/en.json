@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "description": "Portfolio of Anas Attoum, a Front-End Developer specializing in React.js, Next.js, and Tailwind CSS. Showcasing projects, skills, and professional experience."
+  },
+  "home": "Home",
+  "about": "About",
+  "skills": "Skills",
+  "projects": "Projects",
+  "contact": "Contact",
+  "hi": "Hi, I’m",
+  "front-end-dev": "A Front-End Web Developer",
+  "lets-work-together": "Let’s Work Together",
+  "download-cv": "Download CV",
+  "show-cv": "Show CV",
+  "bit": "A Bit About Me",
+  "about-me": "I have always been fascinated by how website interfaces are created, which sparked my journey into Front-End development. I began by honing my web design skills using Figma, translating creative ideas into compelling visuals. To bring these designs to life, I focused on mastering React.js and Next.js, enabling me to build interactive and dynamic web pages. As an IT engineer, I am committed to continuously learning new technologies and techniques to enhance user experiences and create innovative, high-quality web solutions.",
+  "love": "What I Love",
+  "did": "What I Did",
+  "all": "All",
+  "pages": "Pages",
+  "games": "Games",
+  "components": "Components",
+  "more-details": "More Details",
+  "more-projects": "More Projects ...",
+  "contact-me": "Contact Me",
+  "lets-connect": "Let’s Connect! <br></br> and make something amazing together",
+  "drop-message": "I’m currently looking for new opportunities, whether it’s a part-time of full-time position, my inbox is always open.<br></br> Drop me a message!",
+  "code-with": "Code with ❤️",
+  "name": "Name",
+  "email": "Email",
+  "message": "Message",
+  "submit": "Submit",
+  "back": "Back",
+  "code": "Code",
+  "demo": "Demo",
+  "other": "Other",
+  "overview": "Overview",
+  "code-by": "Code with ❤️ by",
+  "page-not-found": "Page not found",
+  "oops": "Oops! The page you're looking for doesn't exist or has moved. Let us get you back on the right track.",
+  "go-to-homepage": "Go to homepage",
+  "toaster": {
+    "success": "Thank you! Your message has been sent successfully.",
+    "error": "Oops! Something went wrong. Please try again later."
+  },
+  "validation": {
+    "required": "Required",
+    "invalid-email": "Invalid email address"
+  }
+}

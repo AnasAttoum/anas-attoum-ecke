@@ -1,0 +1,95 @@
+@import "./globals.css";
+
+/* --------------------------------- Second border --------------------------------- */
+.second-border {
+  @apply absolute top-7 left-7 -z-10 inline-block w-full h-full rounded-3xl p-2;
+
+  background: linear-gradient(45deg, var(--primary), #fff) border-box;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.animated-box {
+  @apply hidden md:flex absolute -top-45 -right-125 w-150 h-150 rounded-lg bg-primary -z-20;
+  animation: shape 10s linear infinite alternate;
+}
+@keyframes shape {
+  from {
+    transform: rotate(60deg);
+  }
+  to {
+    transform: rotate(75deg);
+  }
+}
+
+.animated-small-box {
+  @apply hidden md:flex absolute top-0 -right-125 w-100 h-100 rounded-lg bg-secondary -z-20;
+  animation: small-shape 60s linear infinite alternate;
+}
+@keyframes small-shape {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+/* --------------------------------- primaryCircle --------------------------------- */
+.primaryCircle {
+  @apply absolute -z-10 h-24 w-24 md:h-30 md:w-30 bg-secondary;
+  border-radius: 30% 70% / 50% 50%;
+
+  animation: circ 5s infinite alternate;
+}
+
+@keyframes circ {
+  from {
+    transform: translateY(30px);
+  }
+
+  to {
+    transform: translateY(-30px);
+  }
+}
+
+/* --------------------------------- rotateLeft & rotateRight --------------------------------- */
+
+.rotateLeft {
+  opacity: 0;
+  animation: moveLeft 3s 1.5s;
+}
+@keyframes moveLeft {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(360deg);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(0);
+  }
+}
+
+.rotateRight {
+  opacity: 0;
+  animation: moveRight 3s 1.5s;
+}
+@keyframes moveRight {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: rotate(-360deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(0);
+  }
+}

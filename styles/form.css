@@ -1,0 +1,14 @@
+@import "./globals.css";
+
+input,
+textarea {
+  @apply p-3 rounded-md w-full border-2 border-dark-gray text-primary outline-0 resize-none;
+  caret-color: var(--mainColor);
+}
+input {
+  @apply h-16;
+}
+
+label {
+  @apply tracking-widest;
+}
