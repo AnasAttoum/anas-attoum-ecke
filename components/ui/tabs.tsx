@@ -51,7 +51,7 @@ function TabsList({
       <TabsPrimitive.List
       data-slot="tabs-list"
       data-variant={variant}
-      className={cn(tabsListVariants({ variant }), "bg-light w-100 shadow dark:shadow-dark", className)}
+      className={cn(tabsListVariants({ variant }), "bg-light w-100 shadow dark:shadow-dark mb-5", className)}
       {...props}
     />
     </div>

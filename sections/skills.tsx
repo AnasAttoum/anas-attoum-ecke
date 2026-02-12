@@ -1,15 +1,11 @@
-import { SkillFindManyArgs } from "@/app/generated/prisma/models";
+import { Skill } from "@/app/generated/prisma/browser";
 import SkillCard from "@/components/cards/skill-card";
 import LetterAnimation from "@/components/gsap/letter-animation";
-import prisma, { prismaConfig } from "@/lib/prisma";
 
-export default async function Skills() {
-
-    const skills = await prisma.skill.findMany(prismaConfig as SkillFindManyArgs);
+export default function Skills({ skills }: { skills: Skill[] }) {
 
     return (
         <div>
-            <section>
                 <LetterAnimation title="love" />
 
                 <div className="flex justify-center flex-wrap gap-2 sm:gap-3 md:gap-10 max-md:space-y-7">
@@ -20,7 +16,6 @@ export default async function Skills() {
 
                 </div>
 
-            </section>
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import Header from '@/layouts/header/header';
-import { paths } from '@/lib/paths';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
@@ -38,14 +37,14 @@ export default async function Page() {
                     </p>
 
                     {/* Action buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                    {/* <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
                         <Link href="/" className="basicBtn bg-dark! hover:bg-primary! focus:bg-primary! text-white border-none flex-2">
                             {t("go-to-homepage")}
                         </Link>
                         <Link href={paths.contact} className="basicBtn flex-1">
                             {t("contact")}
                         </Link>
-                    </div>
+                    </div> */}
 
                 </div>
 

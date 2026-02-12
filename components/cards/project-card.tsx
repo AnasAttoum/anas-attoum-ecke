@@ -36,9 +36,9 @@ export default function ProjectCard({ project, index }: Props) {
                 <h3 className="h3 relative font-semibold text-center z-10 -top-3 group-hover:top-3 group-focus-within:top-3 group-hover:md:top-7 group-focus-within:md:top-7 group-hover:lg:top-9 group-focus-within:lg:top-9 xl:top-10 tracking-widest opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition">
                     {name}
                 </h3>
-                <div className="relative flex justify-center items-center w-full h-full -mt-10 -z-10 group-hover:z-10 group-focus-within:z-10">
+                {/* <div className="relative flex justify-center items-center w-full h-full -mt-10 -z-10 group-hover:z-10 group-focus-within:z-10">
                     <Link href={`${paths.projects}/${name.toLowerCase().replaceAll(" ", "-")}`} className="primaryBtn py-1! lg:py-3! mt-5! opacity-0! group-hover:opacity-100! group-focus-within:opacity-100! right-10 group-hover:right-0 group-focus-within:right-0 transition">{t("more-details")}</Link>
-                </div>
+                </div> */}
                 <div className="text-xs lg:text-sm absolute text-center! line-clamp-1 z-10 -bottom-3 group-hover:bottom-6 group-focus-within:bottom-6 group-hover:md:bottom-8 group-focus-within:md:bottom-8 group-hover:lg:bottom-9 group-focus-within:lg:bottom-9 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 px-3 w-full transition">{technologies.join(" | ")}</div>
             </div>
         </ToAnimation>

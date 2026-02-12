@@ -125,7 +125,7 @@
 
 /* --------------------------------- secondaryBtn --------------------------------- */
 .secondaryBtn {
-  @apply text-lg text-white inline-block w-full py-5 px-10 rounded-lg text-center hover:bg-primary focus:bg-primary bg-dark-gray transition-all duration-500;
+  @apply text-lg text-white inline-block w-full py-5 px-10 rounded-lg text-center hover:bg-primary focus:bg-primary bg-dark-gray transition-all duration-500 cursor-pointer;
 }
 
 /* --------------------------------- basicBtn --------------------------------- */

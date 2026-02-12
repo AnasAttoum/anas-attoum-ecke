@@ -46,5 +46,10 @@
   "validation": {
     "required": "Required",
     "invalid-email": "Invalid email address"
-  }
+  },
+  "next": "Next",
+  "before": "Before",
+  "after": "After",
+  "add": "Add",
+  "Edit": "Edit"
 }

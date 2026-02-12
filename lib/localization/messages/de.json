@@ -46,5 +46,10 @@
   "validation": {
     "required": "Erforderlich",
     "invalid-email": "Ungültige E-Mail-Adresse"
-  }
+  },
+  "next": "Weiter",
+  "before": "Vorher",
+  "after": "Nachher",
+  "add": "Hinzufügen",
+  "Edit": "Bearbeiten"
 }
