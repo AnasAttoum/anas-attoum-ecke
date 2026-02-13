@@ -1,3 +1,4 @@
+import { jwtVerify } from "jose";
 import { defaultLocale, locales, routing } from "@/lib/localization/routing";
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
@@ -15,6 +16,20 @@ export default async function proxy(request: NextRequest) {
       locale = loc;
       pathWithoutLocale = pathname.slice(loc.length + 1) || "/";
       break;
+    }
+  }
+
+   if (authCookie) {
+    try {
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+      await jwtVerify(authCookie.value, secret);
+    } catch {
+      const response = NextResponse.redirect(
+        new URL(`/${locale}${paths.login}`, request.url)
+      );
+
+      response.cookies.delete("auth");
+      return response;
     }
   }
 

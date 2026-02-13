@@ -1,11 +1,12 @@
 "use client";
 
+
 import dynamic from "next/dynamic";
 import { Skill } from '@/app/generated/prisma/browser';
 import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 
-const ReactJson = dynamic(() => import("react-json-view"), {
+const ReactJsonView = dynamic(() => import("@microlink/react-json-view"), {
   ssr: false,
 });
 
@@ -22,7 +23,7 @@ export default function Code({ title, src }: Props) {
     return (
         <>
             {title && <p className="h4 mt-5 -mb-3">{t(title)}:</p>}
-            <ReactJson
+            <ReactJsonView
                 src={src}
                 theme={isDark ? "monokai" : "apathy:inverted"}
                 displayDataTypes={false}

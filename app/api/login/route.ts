@@ -1,3 +1,4 @@
+import { SignJWT } from "jose";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -5,10 +6,20 @@ export async function POST(req: Request) {
 
   if (password === process.env.PASSWORD) {
     const response = NextResponse.json({ success: true });
-    response.cookies.set("auth", "true", {
+
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+
+    const token = await new SignJWT({ role: "admin" })
+      .setProtectedHeader({ alg: "HS256" })
+      .setExpirationTime("1h")
+      .sign(secret);
+
+    response.cookies.set("auth", token, {
       httpOnly: true,
+      secure: true,
       maxAge: 60 * 60,
     });
+
     return response;
   }
 
