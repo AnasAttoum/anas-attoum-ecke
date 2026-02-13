@@ -41,7 +41,9 @@
   "go-to-homepage": "Go to homepage",
   "toaster": {
     "success": "Thank you! Your message has been sent successfully.",
-    "error": "Oops! Something went wrong. Please try again later."
+    "error": "Oops! Something went wrong. Please try again later.",
+    "incorrect-password": "Incorrect password",
+    "access-granted": "Access granted"
   },
   "validation": {
     "required": "Required",
@@ -51,5 +53,6 @@
   "before": "Before",
   "after": "After",
   "add": "Add",
-  "Edit": "Edit"
+  "Edit": "Edit",
+  "password": "Password"
 }

@@ -25,7 +25,7 @@ export default function SubmitButton({ loading = false, ...props }: Props) {
                         setHovered(null)
                 }, 350)
             }}
-            className="relative w-full text-white bg-dark-gray hover:bg-primary focus:bg-primary rounded-md py-5 cursor-pointer overflow-hidden group"
+            className="relative w-full text-white bg-primary hover:bg-dark-gray focus:bg-dark-gray rounded-md py-5 cursor-pointer overflow-hidden group"
             {...props}
         >
             {loading

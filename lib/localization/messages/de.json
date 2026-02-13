@@ -41,7 +41,9 @@
   "go-to-homepage": "Zur Startseite",
   "toaster": {
     "success": "Danke! Ihre Nachricht wurde erfolgreich gesendet.",
-    "error": "Hoppla! Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut."
+    "error": "Hoppla! Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.",
+    "incorrect-password": "Falsches Passwort",
+    "access-granted": "Anmeldung erfolgreich"
   },
   "validation": {
     "required": "Erforderlich",
@@ -51,5 +53,6 @@
   "before": "Vorher",
   "after": "Nachher",
   "add": "Hinzufügen",
-  "Edit": "Bearbeiten"
+  "Edit": "Bearbeiten",
+  "password": "Passwort"
 }
