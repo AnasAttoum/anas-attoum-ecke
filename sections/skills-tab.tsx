@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Skills from "./skills";
 import Code from "@/components/code/code";
+import SubmitButton from "@/components/buttons/submit-button/submit-button";
 
 export default function SkillsTab({ skills }: { skills: Skill[] }) {
 
@@ -18,7 +19,7 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
     const enabledSkills = editedSkills.filter(({ enabled }) => enabled);
 
     return (
-        <>
+        <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-3 text-black mb-5">
                 {skills.map(({ id, name, image, color, enabled }, index) =>
                     <ToAnimation
@@ -73,13 +74,11 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
                     </ToAnimation>
                     :
                     <ToAnimation to="top">
-                        <div className="flex justify-end">
-                            <button onClick={() => setConfirmed(false)} className="primaryBtn">{t("submit")}</button>
-                        </div>
+                        <SubmitButton onClick={() => setConfirmed(false)} />
                     </ToAnimation>
                 }
             </div>
 
-        </>
+        </div>
     )
 }

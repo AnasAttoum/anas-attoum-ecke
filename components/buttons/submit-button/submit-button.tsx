@@ -7,9 +7,10 @@ import { ButtonHTMLAttributes, useState } from "react"
 
 type Props = {
     loading?: boolean;
+    label?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-export default function SubmitButton({ loading = false, ...props }: Props) {
+export default function SubmitButton({ label = "submit", loading = false, ...props }: Props) {
 
     const t = useTranslations()
     const [hovered, setHovered] = useState<boolean | null>(null)
@@ -30,18 +31,18 @@ export default function SubmitButton({ loading = false, ...props }: Props) {
         >
             {loading
                 ?
-                    <div className="py-3">
-                        <Image
+                <div className="py-3">
+                    <Image
                         src="/icons/more/three-dots-loading.svg"
                         alt="..."
                         width={50}
                         height={50}
                         className="absolute top-0 w-full h-16"
                     />
-                    </div>
+                </div>
                 :
                 <>
-                    {t("submit")}
+                    {t(label)}
                     <Image
                         src="/icons/more/send.svg"
                         alt="send"

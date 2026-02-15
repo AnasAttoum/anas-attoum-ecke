@@ -54,5 +54,9 @@
   "after": "Nachher",
   "add": "Hinzufügen",
   "Edit": "Bearbeiten",
-  "password": "Passwort"
+  "password": "Passwort",
+  "logout": "Abmelden",
+  "logoutTitle": "Abmelden bestätigen",
+  "logoutDescription": "Sind Sie sicher, dass Sie sich von Ihrem Konto abmelden möchten?",
+  "close": "Schließen"
 }

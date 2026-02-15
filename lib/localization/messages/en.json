@@ -54,5 +54,9 @@
   "after": "After",
   "add": "Add",
   "Edit": "Edit",
-  "password": "Password"
+  "password": "Password",
+  "logout": "Logout",
+  "logoutTitle": "Confirm Logout",
+  "logoutDescription": "Are you sure you want to log out of your account?",
+  "close": "Close"
 }

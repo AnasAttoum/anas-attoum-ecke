@@ -41,7 +41,6 @@ export default function useFormLogic() {
                 throw new Error(t("toaster.incorrect-password"));
             }
 
-            reset();
             toasterSuccess(t("toaster.access-granted"));
             router.push(paths.dashboard)
         } catch (error) {
@@ -50,6 +49,8 @@ export default function useFormLogic() {
             } else {
                 toasterError(t("toaster.error"));
             }
+        } finally{
+            reset();
         }
     }
 

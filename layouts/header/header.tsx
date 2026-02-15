@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 
 import dynamic from 'next/dynamic';
 import LocaleSwitcher from "@/components/buttons/locale-switcher/locale-switcher";
-import { useTranslations } from "next-intl";
+import Logout from "@/components/buttons/logout/logout";
+import { usePathname } from "@/lib/localization/navigation";
+import { paths } from "@/lib/paths";
 
 // Disable SSR for this component
 const ThemeToggle = dynamic(() => import('@/components/buttons/theme-toggle/theme-toggle'), {
@@ -15,10 +17,9 @@ const ThemeToggle = dynamic(() => import('@/components/buttons/theme-toggle/them
 });
 
 export default function Header() {
-  const t = useTranslations();
-
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -59,6 +60,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <ThemeToggle />
           <LocaleSwitcher />
+          {pathname !== paths.login && <Logout />}
         </div>
       </div>
 

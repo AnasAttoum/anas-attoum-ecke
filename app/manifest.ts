@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Anas Attoum – Ecke",
-    short_name: "Anas Attoum",
+    short_name: "Anas Attoum – Ecke",
     description:
       "Developer dashboard for managing and showcasing projects, skills, and experience, built with Next.js, TypeScript, and Tailwind CSS.",
     start_url: "/",
