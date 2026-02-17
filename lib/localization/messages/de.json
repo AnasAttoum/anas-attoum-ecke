@@ -24,7 +24,7 @@
   "more-projects": "Weitere Projekte ...",
   "contact-me": "Kontaktiere mich",
   "lets-connect": "Lass uns verbinden! <br></br> und etwas Großartiges zusammen schaffen",
-  "drop-message": "Ich suche derzeit nach neuen Möglichkeiten, sei es in Teilzeit oder Vollzeit. Mein Posteingang ist immer offen.<br></br> Schreib mir eine Nachricht!",
+  "drop-message": "Hast du eine Idee, eine spannende Möglichkeit oder ein Projekt im Kopf? Lass uns gemeinsam etwas Besonderes daraus machen. Mein Postfach ist immer offen. <br></br> Schreib mir eine Nachricht und lass uns loslegen!",
   "code-with": "Code mit ❤️",
   "name": "Name",
   "email": "Email",
@@ -43,7 +43,9 @@
     "success": "Danke! Ihre Nachricht wurde erfolgreich gesendet.",
     "error": "Hoppla! Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.",
     "incorrect-password": "Falsches Passwort",
-    "access-granted": "Anmeldung erfolgreich"
+    "access-granted": "Anmeldung erfolgreich",
+    "created-successfully": "Erfolgreich erstellt",
+    "edited-successfully": "Erfolgreich bearbeitet"
   },
   "validation": {
     "required": "Erforderlich",
@@ -53,10 +55,14 @@
   "before": "Vorher",
   "after": "Nachher",
   "add": "Hinzufügen",
-  "Edit": "Bearbeiten",
+  "edit": "Bearbeiten",
   "password": "Passwort",
   "logout": "Abmelden",
-  "logoutTitle": "Abmelden bestätigen",
-  "logoutDescription": "Sind Sie sicher, dass Sie sich von Ihrem Konto abmelden möchten?",
-  "close": "Schließen"
+  "logout-title": "Abmelden bestätigen",
+  "logout-description": "Sind Sie sicher, dass Sie sich von Ihrem Konto abmelden möchten?",
+  "close": "Schließen",
+  "enable-confirm": "Sind Sie sicher, dass Sie <strong>{name}</strong> aktivieren möchten?",
+  "disable-confirm": "Sind Sie sicher, dass Sie <strong>{name}</strong> deaktivieren möchten?",
+  "enable": "Aktivieren",
+  "disable": "Deaktivieren"
 }

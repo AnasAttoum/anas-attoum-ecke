@@ -32,12 +32,12 @@ export default function Logout() {
             </DialogTrigger>
             <DialogContent className="flex flex-col items-center gap-10">
                 <DialogHeader>
-                    <div className='bg-primary/10 mx-auto mb-2 flex size-12 items-center justify-center rounded-full'>
-                        <TriangleAlertIcon className='text-primary size-6' />
+                    <div className='bg-white/10 mx-auto mb-2 flex size-12 items-center justify-center rounded-full'>
+                        <TriangleAlertIcon className='text-white size-6' />
                     </div>
-                    <DialogTitle className="mx-auto">{t("logoutTitle")}</DialogTitle>
+                    <DialogTitle className="mx-auto">{t("logout-title")}</DialogTitle>
                     <DialogDescription>
-                        {t("logoutDescription")}
+                        {t("logout-description")}
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="max-sm:w-full">

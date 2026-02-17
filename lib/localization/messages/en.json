@@ -24,7 +24,7 @@
   "more-projects": "More Projects ...",
   "contact-me": "Contact Me",
   "lets-connect": "Let’s Connect! <br></br> and make something amazing together",
-  "drop-message": "I’m currently looking for new opportunities, whether it’s a part-time of full-time position, my inbox is always open.<br></br> Drop me a message!",
+  "drop-message": "Have an idea, opportunity, or project in mind? Let’s turn it into something exceptional. My inbox is always open. <br></br> Send me a message and let’s get started!",
   "code-with": "Code with ❤️",
   "name": "Name",
   "email": "Email",
@@ -43,7 +43,9 @@
     "success": "Thank you! Your message has been sent successfully.",
     "error": "Oops! Something went wrong. Please try again later.",
     "incorrect-password": "Incorrect password",
-    "access-granted": "Access granted"
+    "access-granted": "Access granted",
+    "created-successfully": "Created successfully",
+    "edited-successfully": "Edited successfully"
   },
   "validation": {
     "required": "Required",
@@ -53,10 +55,14 @@
   "before": "Before",
   "after": "After",
   "add": "Add",
-  "Edit": "Edit",
+  "edit": "Edit",
   "password": "Password",
   "logout": "Logout",
-  "logoutTitle": "Confirm Logout",
-  "logoutDescription": "Are you sure you want to log out of your account?",
-  "close": "Close"
+  "logout-title": "Confirm Logout",
+  "logout-description": "Are you sure you want to log out of your account?",
+  "close": "Close",
+  "enable-confirm": "Are you sure you want to enable <strong>{name}</strong>?",
+  "disable-confirm": "Are you sure you want to enable <strong>{name}</strong>?",
+  "enable": "Enable",
+  "disable": "Disable"
 }

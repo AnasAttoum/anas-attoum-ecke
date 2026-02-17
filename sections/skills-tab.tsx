@@ -10,6 +10,7 @@ import { useState } from "react";
 import Skills from "./skills";
 import Code from "@/components/code/code";
 import SubmitButton from "@/components/buttons/submit-button/submit-button";
+import ToggleEnableDialog from "@/components/dialogs/toggle-enable-dialog";
 
 export default function SkillsTab({ skills }: { skills: Skill[] }) {
 
@@ -19,38 +20,45 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
     const enabledSkills = editedSkills.filter(({ enabled }) => enabled);
 
     return (
-        <div className="flex flex-col gap-5">
+        <section className="flex flex-col gap-5">
             <div className="flex flex-col gap-3 text-black mb-5">
-                {skills.map(({ id, name, image, color, enabled }, index) =>
-                    <ToAnimation
-                        key={id}
-                        to={index % 2 === 0 ? "left" : "right"}
-                        order={bulkChildrenAnimation(index)}
-                    >
-                        <div
-                            className={cn(
-                                "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-7",
-                                !enabled && "bg-[repeating-linear-gradient(-45deg,transparent,transparent_10px,var(--secondary)_10px,var(--secondary)_20px)]",
-                                confirmed && "grayscale cursor-not-allowed"
-                            )}
+                {skills.map((skill, index) => {
+                    const { id, name, image, color, enabled } = skill;
+                    return (
+                        <ToAnimation
+                            key={id}
+                            to={index % 2 === 0 ? "left" : "right"}
+                            order={bulkChildrenAnimation(index)}
                         >
-                            <div className="absolute top-0 -left-4 flex items-center h-full">
-                                <div className="bg-primary p-3 text-white rounded-md">{index + 1}.</div>
-                            </div>
+                            <div
+                                className={cn(
+                                    "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-7",
+                                    !enabled && "bg-[repeating-linear-gradient(-45deg,transparent,transparent_10px,var(--secondary)_10px,var(--secondary)_20px)]",
+                                    confirmed && "grayscale cursor-not-allowed"
+                                )}
+                            >
+                                <div className="absolute top-0 -left-4 flex items-center h-full">
+                                    <div className="bg-primary p-3 text-white rounded-md">{index + 1}.</div>
+                                </div>
 
-                            <strong className="col-span-3">{name}</strong>
+                                <strong className="col-span-3">{name}</strong>
 
-                            <div className="relative">
-                                <Image src={image} alt={name} fill className="object-contain" />
-                            </div>
+                                <div className="relative">
+                                    <Image src={image} alt={name} fill className="object-contain" />
+                                </div>
 
-                            <div className="flex gap-1">
-                                <div className="h-full aspect-square rounded-md" style={{ backgroundColor: color }} />
-                                {color}
+                                <div className="flex gap-1 col-span-2">
+                                    <div className="h-full aspect-square rounded-md" style={{ backgroundColor: color }} />
+                                    {color}
+                                </div>
+
+                                <div className="flex items-center gap-2">
+                                    <ToggleEnableDialog item={skill} />
+                                </div>
                             </div>
-                        </div>
-                    </ToAnimation>
-                )}
+                        </ToAnimation>
+                    )
+                })}
             </div>
 
             {confirmed &&
@@ -78,7 +86,6 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
                     </ToAnimation>
                 }
             </div>
-
-        </div>
+        </section>
     )
 }

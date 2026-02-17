@@ -41,7 +41,7 @@ export default async function proxy(request: NextRequest) {
 
   if (pathWithoutLocale === paths.login && authCookie) {
     return NextResponse.redirect(
-      new URL(`/${locale}${paths.dashboard}`, request.url),
+      new URL(`/${locale}${paths.skills}`, request.url),
     );
   }
 
