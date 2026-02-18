@@ -3,6 +3,7 @@
 import SubmitButton from "@/components/buttons/submit-button/submit-button";
 import ToAnimation from "@/components/gsap/to-animation";
 import useFormLogic from "./use-form-logic";
+import Input from "@/components/inputs/input";
 
 export default function Form() {
 
@@ -19,17 +20,7 @@ export default function Form() {
     <ToAnimation to="none" order={2} className="col-span-2 lg:col-span-1">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
 
-        <div>
-          <label htmlFor="password" className="h4">
-            {t("password")}
-          </label>
-          <input type="password" id="password" {...register("password")} />
-          {errors.password && (
-            <p className="errorMsg">
-              {errors.password.message}
-            </p>
-          )}
-        </div>
+        <Input name="password" label="password" register={register} errors={errors} />
 
         <SubmitButton loading={isSubmitting} disabled={isSubmitting} />
       </form>
