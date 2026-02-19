@@ -11,16 +11,21 @@ import Skills from "./skills";
 import Code from "@/components/code/code";
 import SubmitButton from "@/components/buttons/submit-button/submit-button";
 import ToggleEnableDialog from "@/components/dialogs/toggle-enable-dialog";
+import AddSkill from "@/components/dialogs/skill/add-skill";
 
 export default function SkillsTab({ skills }: { skills: Skill[] }) {
 
     const t = useTranslations();
     const [confirmed, setConfirmed] = useState(false);
+    const [skill, setSkill] = useState<Skill | boolean>(false);
     const [editedSkills, setEditedSkills] = useState(skills);
     const enabledSkills = editedSkills.filter(({ enabled }) => enabled);
 
     return (
         <section className="flex flex-col gap-5">
+
+            <AddSkill skill={skill} setSkill={setSkill} skillsLength={skills.length} />
+
             <div className="flex flex-col gap-3 text-black mb-5">
                 {skills.map((skill, index) => {
                     const { id, name, image, color, enabled } = skill;

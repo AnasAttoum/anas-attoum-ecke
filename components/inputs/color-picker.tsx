@@ -30,7 +30,7 @@ export function ColorPicker<T extends FieldValues>({defaultValue, setValue }: Pr
                     <button
                         id="color"
                         type="button"
-                        className="h-12 rounded-md border-2 border-dark-gray outline-0"
+                        className="h-12.75 rounded-md border-2 border-dark-gray outline-0"
                         style={{ backgroundColor: color }}
                     />
                 </PopoverTrigger>

@@ -8,7 +8,6 @@ import Input from "@/components/inputs/input";
 export default function Form() {
 
   const {
-    t,
     register,
     handleSubmit,
     onSubmit,
@@ -20,7 +19,7 @@ export default function Form() {
     <ToAnimation to="none" order={2} className="col-span-2 lg:col-span-1">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
 
-        <Input name="password" label="password" register={register} errors={errors} />
+        <Input name="password" label="password" type="password" register={register} errors={errors} isMainInput />
 
         <SubmitButton loading={isSubmitting} disabled={isSubmitting} />
       </form>

@@ -58,7 +58,6 @@ export default function ToggleEnableDialog({ item }: Props) {
                             <Image src={image} alt={name} fill className="object-contain" />
                         </div>
                         <DialogTitle className="mx-auto">
-                            {/* {t("enable-confirm", { name })} */}
                             {t.rich(enabled ? "disable-confirm" : "enable-confirm", {
                                 name,
                                 strong: (chunks) => <strong>{chunks}</strong>

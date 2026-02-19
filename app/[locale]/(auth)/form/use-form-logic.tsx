@@ -55,7 +55,6 @@ export default function useFormLogic() {
     }
 
     return {
-        t,
         register,
         handleSubmit,
         onSubmit,
