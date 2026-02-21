@@ -1,13 +1,14 @@
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 import { Switch } from '../ui/switch';
+import { useTranslations } from 'next-intl';
 
 type Props<T extends FieldValues> = {
     name: Path<T>;
     control: Control<T>;
-    label: string;
 }
 
-export default function SwitchInput<T extends FieldValues>({ control, name, label }: Props<T>) {
+export default function SwitchInput<T extends FieldValues>({ control, name }: Props<T>) {
+    const t = useTranslations();
     return (
         <Controller
             control={control}
@@ -18,7 +19,7 @@ export default function SwitchInput<T extends FieldValues>({ control, name, labe
                         checked={field.value}
                         onCheckedChange={field.onChange}
                     />
-                    <label>{label}</label>
+                    <label>{field.value ? t("enabled") : t("disabled")}</label>
                 </div>
             )}
         />

@@ -49,7 +49,7 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1 }: Props) {
                         <Input name="name" label="name" register={register} errors={errors} />
                         <ColorPicker defaultValue={getValues().color} setValue={setValue} />
                         <Input name="image" label="image" register={register} errors={errors} />
-                        <SwitchInput name="enabled" label="enabled" control={control} />
+                        <SwitchInput name="enabled" control={control} />
 
                         <DialogFooter className="max-sm:w-full">
                             <DialogClose asChild>

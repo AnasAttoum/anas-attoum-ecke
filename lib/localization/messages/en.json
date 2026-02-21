@@ -28,6 +28,8 @@
   "code-with": "Code with ❤️",
   "name": "Name",
   "email": "Email",
+  "color": "Color",
+  "image": "Image",
   "message": "Message",
   "submit": "Submit",
   "back": "Back",
@@ -68,5 +70,7 @@
   "enable-confirm": "Are you sure you want to enable <strong>{name}</strong>?",
   "disable-confirm": "Are you sure you want to enable <strong>{name}</strong>?",
   "enable": "Enable",
-  "disable": "Disable"
+  "disable": "Disable",
+  "enabled": "Enabled",
+  "disabled": "Disabled"
 }

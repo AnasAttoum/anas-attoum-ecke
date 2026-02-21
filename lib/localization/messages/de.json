@@ -28,6 +28,8 @@
   "code-with": "Code mit ❤️",
   "name": "Name",
   "email": "Email",
+  "color": "Farbe",
+  "image": "Bild",
   "message": "Nachricht",
   "submit": "Absenden",
   "back": "Zurück",
@@ -68,5 +70,7 @@
   "enable-confirm": "Sind Sie sicher, dass Sie <strong>{name}</strong> aktivieren möchten?",
   "disable-confirm": "Sind Sie sicher, dass Sie <strong>{name}</strong> deaktivieren möchten?",
   "enable": "Aktivieren",
-  "disable": "Deaktivieren"
+  "disable": "Deaktivieren",
+  "enabled": "Aktiviert",
+  "disabled": "Deaktiviert"
 }
