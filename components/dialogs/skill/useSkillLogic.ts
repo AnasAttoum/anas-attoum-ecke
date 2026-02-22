@@ -5,8 +5,13 @@ import { toasterError, toasterSuccess } from "@/components/toaster/toaster";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "@/lib/localization/navigation";
 import { paths } from "@/lib/paths";
+import { Dispatch, SetStateAction } from "react";
+import { Skill } from "@/app/generated/prisma/browser";
 
-export default function useSkillLogic(skillsLength: number) {
+export default function useSkillLogic(
+  skillsLength: number,
+  setSkill: Dispatch<SetStateAction<boolean | Skill>>,
+) {
   const t = useTranslations();
   const router = useRouter();
 
@@ -33,29 +38,31 @@ export default function useSkillLogic(skillsLength: number) {
       color: "#a886e4",
       image: "",
       enabled: false,
-      order: skillsLength,
+      order: skillsLength + 1,
     },
     resolver: zodResolver(formSchema),
   });
 
-  console.log("errors: ", errors, getValues());
   const onSubmit = async (values: FormValues) => {
     try {
-      console.log("values: ", values);
-      //   const res = await fetch("/api/login", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({ password }),
-      //   });
-      //   if (!res.ok) {
-      //     throw new Error(t("toaster.incorrect-password"));
-      //   }
+      const res = await fetch("/api/skills/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
 
-      //   toasterSuccess(t("toaster.access-granted"));
-      //   router.push(paths.skills);
-      // reset();
+      if (!res.ok) {
+        throw new Error(t("toaster.error"));
+      }
+
+      const data = await res.json();
+      toasterSuccess(t(data.message));
+      
+      setSkill(false);
+      router.push(paths.skills);
+      reset();
     } catch (error) {
       if (error instanceof Error) {
         toasterError(error?.message || t("toaster.error"));

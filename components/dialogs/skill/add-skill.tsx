@@ -26,7 +26,7 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1 }: Props) {
         getValues,
         setValue,
         control,
-    } = useSkillLogic(skillsLength);
+    } = useSkillLogic(skillsLength, setSkill);
 
     return (
         <>
