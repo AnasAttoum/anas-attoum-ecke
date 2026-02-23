@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { toasterError, toasterSuccess } from "@/components/toaster/toaster";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "@/lib/localization/navigation";
-import { paths } from "@/lib/paths";
 import { Dispatch, SetStateAction } from "react";
 import { Skill } from "@/app/generated/prisma/browser";
 
@@ -54,14 +53,15 @@ export default function useSkillLogic(
       });
 
       if (!res.ok) {
-        throw new Error(t("toaster.error"));
+        if (res.status === 401) router.refresh();
+        throw new Error(t((await res.json())?.message || "toaster.error"));
       }
 
       const data = await res.json();
       toasterSuccess(t(data.message));
-      
+
       setSkill(false);
-      router.push(paths.skills);
+      router.refresh();
       reset();
     } catch (error) {
       if (error instanceof Error) {

@@ -47,7 +47,8 @@
     "incorrect-password": "Falsches Passwort",
     "access-granted": "Anmeldung erfolgreich",
     "created-successfully": "Erfolgreich erstellt",
-    "edited-successfully": "Erfolgreich bearbeitet"
+    "edited-successfully": "Erfolgreich bearbeitet",
+    "for-extra-security": "Aus Sicherheitsgründen melden Sie sich bitte erneut an."
   },
   "validation": {
     "required": "Erforderlich",

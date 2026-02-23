@@ -23,24 +23,31 @@ export default function ToggleEnableDialog({ item }: Props) {
     const handleSwitch = async () => {
         try {
             setLoading(true);
-            const { success, message } = await fetch(`/api/skills/${id}`, {
+            const res = await fetch(`/api/skills/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify({ id, enabled: !enabled })
-            }).then((res) => res.json());
+            });
 
-            if (success) {
-                toasterSuccess(t(message));
+            if (res.ok) {
+                const data = await res.json();
+                toasterSuccess(t(data.message));
+
                 setOpen(false);
                 router.refresh()
             }
             else {
-                toasterError(t(message));
+                if (res.status === 401) router.refresh();
+                throw new Error(t((await res.json())?.message || "toaster.error"));
             }
-        } catch {
-            toasterError(t("toaster.error"));
+        } catch (error) {
+            if (error instanceof Error) {
+                toasterError(error?.message || t("toaster.error"));
+            } else {
+                toasterError(t("toaster.error"));
+            }
         }
         finally {
             setLoading(false);

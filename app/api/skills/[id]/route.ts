@@ -1,10 +1,19 @@
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import verifyToken from "../../verify-token";
 
 export async function PATCH(
-  req: Request,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const isValid = await verifyToken(req);
+  if (!isValid) {
+    return NextResponse.json(
+      { success: false, message: "toaster.for-extra-security" },
+      { status: 401 },
+    );
+  }
+
   const data = await req.json();
   const { id } = await params;
 

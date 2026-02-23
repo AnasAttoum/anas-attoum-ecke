@@ -47,7 +47,8 @@
     "incorrect-password": "Incorrect password",
     "access-granted": "Access granted",
     "created-successfully": "Created successfully",
-    "edited-successfully": "Edited successfully"
+    "edited-successfully": "Edited successfully",
+    "for-extra-security": "For extra security, please log in again"
   },
   "validation": {
     "required": "Required",
