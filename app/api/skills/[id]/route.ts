@@ -17,7 +17,7 @@ export async function PATCH(
   const data = await req.json();
   const { id } = await params;
 
-  if (typeof data.enabled !== "boolean") {
+  if (typeof data.enabled !== "boolean" || !id) {
     return NextResponse.json(
       { success: false, message: "toaster.error" },
       { status: 400 },
@@ -33,6 +33,44 @@ export async function PATCH(
     return NextResponse.json({
       success: true,
       message: "toaster.edited-successfully",
+    });
+  } catch {
+    return NextResponse.json(
+      { success: false, message: "toaster.error" },
+      { status: 500 },
+    );
+  }
+}
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  const isValid = await verifyToken(req);
+  if (!isValid) {
+    return NextResponse.json(
+      { success: false, message: "toaster.for-extra-security" },
+      { status: 401 },
+    );
+  }
+
+  const { id } = await params;
+
+  if (!id) {
+    return NextResponse.json(
+      { success: false, message: "toaster.error" },
+      { status: 400 },
+    );
+  }
+
+  try {
+    await prisma.skill.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({
+      success: true,
+      message: "toaster.deleted-successfully",
     });
   } catch {
     return NextResponse.json(

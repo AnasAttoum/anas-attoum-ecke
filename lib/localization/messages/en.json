@@ -48,6 +48,7 @@
     "access-granted": "Access granted",
     "created-successfully": "Created successfully",
     "edited-successfully": "Edited successfully",
+    "deleted-successfully": "Deleted successfully",
     "for-extra-security": "For extra security, please log in again"
   },
   "validation": {
@@ -70,8 +71,10 @@
   "close": "Close",
   "enable-confirm": "Are you sure you want to enable <strong>{name}</strong>?",
   "disable-confirm": "Are you sure you want to enable <strong>{name}</strong>?",
+  "delete-confirm": "Are you sure you want to delete <strong>{name}</strong>?",
   "enable": "Enable",
   "disable": "Disable",
   "enabled": "Enabled",
-  "disabled": "Disabled"
+  "disabled": "Disabled",
+  "delete": "Delete"
 }

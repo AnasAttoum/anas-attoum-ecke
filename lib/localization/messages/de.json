@@ -48,6 +48,7 @@
     "access-granted": "Anmeldung erfolgreich",
     "created-successfully": "Erfolgreich erstellt",
     "edited-successfully": "Erfolgreich bearbeitet",
+    "deleted-successfully": "Erfolgreich gelöscht",
     "for-extra-security": "Aus Sicherheitsgründen melden Sie sich bitte erneut an."
   },
   "validation": {
@@ -70,8 +71,10 @@
   "close": "Schließen",
   "enable-confirm": "Sind Sie sicher, dass Sie <strong>{name}</strong> aktivieren möchten?",
   "disable-confirm": "Sind Sie sicher, dass Sie <strong>{name}</strong> deaktivieren möchten?",
+  "delete-confirm": "Sind Sie sicher, dass Sie <strong>{name}</strong> löschen möchten?",
   "enable": "Aktivieren",
   "disable": "Deaktivieren",
   "enabled": "Aktiviert",
-  "disabled": "Deaktiviert"
+  "disabled": "Deaktiviert",
+  "delete": "Löschen"
 }

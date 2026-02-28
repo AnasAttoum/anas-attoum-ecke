@@ -12,6 +12,7 @@ import Code from "@/components/code/code";
 import SubmitButton from "@/components/buttons/submit-button/submit-button";
 import ToggleEnableDialog from "@/components/dialogs/toggle-enable-dialog";
 import AddSkill from "@/components/dialogs/skill/add-skill";
+import DeleteDialog from "@/components/dialogs/delete-dialog";
 
 export default function SkillsTab({ skills }: { skills: Skill[] }) {
 
@@ -37,7 +38,7 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
                         >
                             <div
                                 className={cn(
-                                    "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-7",
+                                    "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-1 min-[350px]:grid-cols-2 md:grid-cols-4 gap-5",
                                     !enabled && "bg-[repeating-linear-gradient(-45deg,transparent,transparent_10px,var(--secondary)_10px,var(--secondary)_20px)]",
                                     confirmed && "grayscale cursor-not-allowed"
                                 )}
@@ -46,19 +47,20 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
                                     <div className="bg-primary p-3 text-white rounded-md">{index + 1}.</div>
                                 </div>
 
-                                <strong className="col-span-3">{name}</strong>
+                                <strong>{name}</strong>
 
                                 <div className="relative">
                                     <Image src={image} alt={name} fill className="object-contain" />
                                 </div>
 
-                                <div className="flex gap-1 col-span-2">
+                                <div className="flex gap-1">
                                     <div className="h-full aspect-square rounded-md" style={{ backgroundColor: color }} />
                                     {color}
                                 </div>
 
-                                <div className="flex items-center gap-2">
+                                <div className="flex justify-center items-center gap-2">
                                     <ToggleEnableDialog item={skill} />
+                                    <DeleteDialog item={skill} />
                                 </div>
                             </div>
                         </ToAnimation>
