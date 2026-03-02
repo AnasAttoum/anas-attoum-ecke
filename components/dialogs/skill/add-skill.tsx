@@ -26,7 +26,8 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1 }: Props) {
         getValues,
         setValue,
         control,
-    } = useSkillLogic(skillsLength, setSkill);
+        isEditing,
+    } = useSkillLogic(skill, skillsLength, setSkill);
 
     return (
         <>
@@ -43,7 +44,7 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1 }: Props) {
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
                         <DialogHeader>
                             <DialogTitle className="font-semibold mx-auto">
-                                {t("add-skill")}
+                                {t(isEditing ? "edit-skill" : "add-skill")}
                             </DialogTitle>
                         </DialogHeader>
                         <Input name="name" label="name" register={register} errors={errors} />
@@ -56,7 +57,7 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1 }: Props) {
                                 <Button type="button" variant="outline">{t("close")}</Button>
                             </DialogClose>
 
-                            <Button type="submit" loading={isSubmitting}>{t("add")}</Button>
+                            <Button type="submit" loading={isSubmitting}>{t(isEditing ? "edit" : "add")}</Button>
                         </DialogFooter>
                     </form>
                 </DialogContent>

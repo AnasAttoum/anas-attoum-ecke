@@ -16,20 +16,20 @@ export async function PATCH(
 
   const data = await req.json();
   const { id } = await params;
-
+  
   if (typeof data.enabled !== "boolean" || !id) {
     return NextResponse.json(
       { success: false, message: "toaster.error" },
       { status: 400 },
     );
   }
-
+  
   try {
     await prisma.skill.update({
       where: { id },
       data,
     });
-
+    
     return NextResponse.json({
       success: true,
       message: "toaster.edited-successfully",

@@ -4,15 +4,18 @@ import { useForm } from "react-hook-form";
 import { toasterError, toasterSuccess } from "@/components/toaster/toaster";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "@/lib/localization/navigation";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo } from "react";
 import { Skill } from "@/app/generated/prisma/browser";
+import { skillsHost } from "@/lib/images-hosts";
 
 export default function useSkillLogic(
+  skill: Skill | boolean,
   skillsLength: number,
   setSkill: Dispatch<SetStateAction<boolean | Skill>>,
 ) {
   const t = useTranslations();
   const router = useRouter();
+  const isEditing = typeof skill === "object";
 
   const formSchema = z.object({
     name: z.string().min(1, t("validation.required")),
@@ -23,6 +26,17 @@ export default function useSkillLogic(
   });
   type FormValues = z.infer<typeof formSchema>;
 
+  const defaultValues = useMemo(
+    () => ({
+      name: "",
+      color: "#a886e4",
+      image: "",
+      enabled: false,
+      order: skillsLength + 1,
+    }),
+    [skillsLength],
+  );
+
   const {
     register,
     handleSubmit,
@@ -32,20 +46,14 @@ export default function useSkillLogic(
     control,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
-    defaultValues: {
-      name: "",
-      color: "#a886e4",
-      image: "",
-      enabled: false,
-      order: skillsLength + 1,
-    },
+    defaultValues,
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async (values: FormValues) => {
     try {
-      const res = await fetch("/api/skills/add", {
-        method: "POST",
+      const res = await fetch(`/api/skills/${isEditing ? skill.id : "add"}`, {
+        method: isEditing ? "PATCH" : "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -72,6 +80,14 @@ export default function useSkillLogic(
     }
   };
 
+  useEffect(() => {
+    if (!skill) return;
+
+    if (typeof skill === "object")
+      reset({ ...skill, image: skill?.image.split("/")?.[4] });
+    else reset(defaultValues);
+  }, [skill, reset, defaultValues]);
+
   return {
     t,
     register,
@@ -82,5 +98,6 @@ export default function useSkillLogic(
     getValues,
     setValue,
     control,
+    isEditing,
   };
 }

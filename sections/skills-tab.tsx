@@ -13,6 +13,7 @@ import SubmitButton from "@/components/buttons/submit-button/submit-button";
 import ToggleEnableDialog from "@/components/dialogs/toggle-enable-dialog";
 import AddSkill from "@/components/dialogs/skill/add-skill";
 import DeleteDialog from "@/components/dialogs/delete-dialog";
+import EditButton from "@/components/buttons/edit/edit";
 
 export default function SkillsTab({ skills }: { skills: Skill[] }) {
 
@@ -60,6 +61,7 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
 
                                 <div className="flex justify-center items-center gap-2">
                                     <ToggleEnableDialog item={skill} />
+                                    <EditButton openDialog={() => setSkill(skill)} />
                                     <DeleteDialog item={skill} />
                                 </div>
                             </div>
