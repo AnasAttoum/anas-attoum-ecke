@@ -10,6 +10,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@dnd-kit/helpers": "^0.3.2",
+    "@dnd-kit/react": "^0.3.2",
     "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^5.2.2",
     "@microlink/react-json-view": "^1.27.1",

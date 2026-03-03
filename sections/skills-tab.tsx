@@ -6,21 +6,25 @@ import { bulkChildrenAnimation } from "@/lib/animation";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import Skills from "./skills";
-import Code from "@/components/code/code";
 import SubmitButton from "@/components/buttons/submit-button/submit-button";
 import ToggleEnableDialog from "@/components/dialogs/toggle-enable-dialog";
 import AddSkill from "@/components/dialogs/skill/add-skill";
 import DeleteDialog from "@/components/dialogs/delete-dialog";
 import EditButton from "@/components/buttons/edit/edit";
+import { DragDropProvider } from '@dnd-kit/react';
+import { useSortable } from '@dnd-kit/react/sortable';
+import { move } from '@dnd-kit/helpers';
 
 export default function SkillsTab({ skills }: { skills: Skill[] }) {
 
     const t = useTranslations();
     const [confirmed, setConfirmed] = useState(false);
+    const [createNewOrder, setCreateNewOrder] = useState(false);
     const [skill, setSkill] = useState<Skill | boolean>(false);
     const [editedSkills, setEditedSkills] = useState(skills);
+    console.log('before: ', skills, "After", editedSkills);
     const enabledSkills = editedSkills.filter(({ enabled }) => enabled);
 
     return (
@@ -28,67 +32,47 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
 
             <AddSkill skill={skill} setSkill={setSkill} skillsLength={skills.length} />
 
-            <div className="flex flex-col gap-3 text-black mb-5">
-                {skills.map((skill, index) => {
-                    const { id, name, image, color, enabled } = skill;
-                    return (
-                        <ToAnimation
-                            key={id}
-                            to={index % 2 === 0 ? "left" : "right"}
-                            order={bulkChildrenAnimation(index)}
-                        >
-                            <div
-                                className={cn(
-                                    "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-1 min-[350px]:grid-cols-2 md:grid-cols-4 gap-5",
-                                    !enabled && "bg-[repeating-linear-gradient(-45deg,transparent,transparent_10px,var(--secondary)_10px,var(--secondary)_20px)]",
-                                    confirmed && "grayscale cursor-not-allowed"
-                                )}
-                            >
-                                <div className="absolute top-0 -left-4 flex items-center h-full">
-                                    <div className="bg-primary p-3 text-white rounded-md">{index + 1}.</div>
-                                </div>
-
-                                <strong>{name}</strong>
-
-                                <div className="relative">
-                                    <Image src={image} alt={name} fill className="object-contain" />
-                                </div>
-
-                                <div className="flex gap-1">
-                                    <div className="h-full aspect-square rounded-md" style={{ backgroundColor: color }} />
-                                    {color}
-                                </div>
-
-                                <div className="flex justify-center items-center gap-2">
-                                    <ToggleEnableDialog item={skill} />
-                                    <EditButton openDialog={() => setSkill(skill)} />
-                                    <DeleteDialog item={skill} />
-                                </div>
-                            </div>
-                        </ToAnimation>
-                    )
-                })}
-            </div>
+            <DragDropProvider
+                onDragEnd={(event) => {
+                    setEditedSkills((items) => move(items, event));
+                    setCreateNewOrder(true);
+                }}
+            >
+                <div className="flex flex-col gap-5 text-black mb-5">
+                    {skills.map((skill, index) =>
+                        <SkillItem
+                            key={skill.id}
+                            skill={skill}
+                            index={index}
+                            confirmed={confirmed}
+                            setSkill={setSkill}
+                            orderChanged={skill.id !== editedSkills[index].id}
+                        />
+                    )}
+                </div>
+            </DragDropProvider>
 
             {confirmed &&
                 <div className="pb-5 bg-primary/50 rounded-md">
                     <Skills skills={enabledSkills} />
-                    <div className="flex flex-nowrap gap-1 md:gap-3 p-2 md:p-3">
+                    {/* <div className="flex flex-nowrap gap-1 md:gap-3 p-2 md:p-3">
                         <ToAnimation to="right" className="flex-1 min-w-0" >
                             <Code src={skills} title="before" />
                         </ToAnimation>
                         <ToAnimation to="left" className="flex-1 min-w-0" >
                             <Code src={editedSkills} title="after" />
                         </ToAnimation>
-                    </div>
+                    </div> */}
                 </div>
             }
 
             <div>
                 {!confirmed
-                    ? <ToAnimation to="top">
-                        <button onClick={() => setConfirmed(true)} className="secondaryBtn">{t("next")}</button>
-                    </ToAnimation>
+                    ? createNewOrder
+                        ? <ToAnimation to="top">
+                            <button onClick={() => setConfirmed(true)} className="secondaryBtn">{t("next")}</button>
+                        </ToAnimation>
+                        : null
                     :
                     <ToAnimation to="top">
                         <SubmitButton onClick={() => setConfirmed(false)} />
@@ -96,5 +80,64 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
                 }
             </div>
         </section>
+    )
+}
+
+export function SkillItem(
+    { skill, index, confirmed, setSkill, orderChanged }: {
+        skill: Skill;
+        index: number;
+        confirmed: boolean;
+        setSkill: Dispatch<SetStateAction<boolean | Skill>>;
+        orderChanged: boolean;
+    }) {
+    const { id, name, order, image, color, enabled } = skill;
+
+    const [element, setElement] = useState<Element | null>(null);
+    const handleRef = useRef<HTMLDivElement | null>(null);
+    const { isDragging, } = useSortable({ id, index, element, handle: handleRef });
+
+    return (
+        <div
+            ref={setElement}
+            data-shadow={isDragging || undefined}
+            className={cn(
+                confirmed && "grayscale pointer-events-none",
+            )}
+        >
+            <ToAnimation
+                to={index % 2 === 0 ? "left" : "right"}
+                order={bulkChildrenAnimation(index)}
+            >
+                <div
+                    className={cn(
+                        "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-1 min-[350px]:grid-cols-2 md:grid-cols-4 gap-5",
+                        !enabled && "bg-[repeating-linear-gradient(-45deg,transparent,transparent_10px,var(--secondary)_10px,var(--secondary)_20px)]",
+                        orderChanged && "border-4 border-primary"
+                    )}
+                >
+                    <div ref={handleRef} className="absolute top-0 -left-4 flex items-center h-full cursor-grab">
+                        <div className="bg-primary p-3 text-white rounded-md">{order}.</div>
+                    </div>
+
+                    <strong>{name}</strong>
+
+                    <div className="relative">
+                        <Image src={image} alt={name} fill className="object-contain" />
+                    </div>
+
+                    <div className="flex gap-1">
+                        <div className="h-full aspect-square rounded-md" style={{ backgroundColor: color }} />
+                        {color}
+                    </div>
+
+                    <div className="flex justify-center items-center gap-2">
+                        <ToggleEnableDialog item={skill} />
+                        <EditButton openDialog={() => setSkill(skill)} />
+                        <DeleteDialog item={skill} />
+                    </div>
+                </div>
+            </ToAnimation>
+        </div>
     )
 }
