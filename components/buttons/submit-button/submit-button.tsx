@@ -27,6 +27,7 @@ export default function SubmitButton({ label = "submit", loading = false, ...pro
                 }, 350)
             }}
             className="relative w-full text-white bg-primary hover:bg-dark-gray focus:bg-dark-gray rounded-md py-5 cursor-pointer overflow-hidden group"
+            disabled={loading}
             {...props}
         >
             {loading

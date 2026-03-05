@@ -21,7 +21,7 @@ export default function Form() {
 
         <Input name="password" label="password" type="password" register={register} errors={errors} isMainInput />
 
-        <SubmitButton loading={isSubmitting} disabled={isSubmitting} />
+        <SubmitButton loading={isSubmitting} />
       </form>
     </ToAnimation>
   )

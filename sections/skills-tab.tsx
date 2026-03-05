@@ -16,16 +16,44 @@ import EditButton from "@/components/buttons/edit/edit";
 import { DragDropProvider } from '@dnd-kit/react';
 import { useSortable } from '@dnd-kit/react/sortable';
 import { move } from '@dnd-kit/helpers';
+import { useRouter } from "@/lib/localization/navigation";
+import { catchError, checkIfResIsOk } from "@/lib/errors";
 
 export default function SkillsTab({ skills }: { skills: Skill[] }) {
 
     const t = useTranslations();
+    const router = useRouter();
+
     const [confirmed, setConfirmed] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [createNewOrder, setCreateNewOrder] = useState(false);
     const [skill, setSkill] = useState<Skill | boolean>(false);
     const [editedSkills, setEditedSkills] = useState(skills);
-    console.log('before: ', skills, "After", editedSkills);
     const enabledSkills = editedSkills.filter(({ enabled }) => enabled);
+
+    const submit = async () => {
+        try {
+            setLoading(true);
+            const res = await fetch(`/api/skills/edit-orders`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(editedSkills),
+            });
+
+            await checkIfResIsOk(t, res, router);
+
+            router.refresh();
+            setConfirmed(false);
+        } catch (error) {
+            console.log('error: ', error);
+            catchError(t, error)
+        } finally {
+            setLoading(false);
+        }
+    }
+
 
     return (
         <section className="flex flex-col gap-5">
@@ -75,7 +103,7 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
                         : null
                     :
                     <ToAnimation to="top">
-                        <SubmitButton onClick={() => setConfirmed(false)} />
+                        <SubmitButton onClick={submit} loading={loading} />
                     </ToAnimation>
                 }
             </div>

@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "@/lib/localization/navigation";
 import { Dispatch, SetStateAction, useEffect, useMemo } from "react";
 import { Skill } from "@/app/generated/prisma/browser";
-import { skillsHost } from "@/lib/images-hosts";
 
 export default function useSkillLogic(
   skill: Skill | boolean,
