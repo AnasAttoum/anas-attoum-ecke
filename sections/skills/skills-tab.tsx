@@ -29,7 +29,6 @@ export default function SkillsTab({ skills, skillsHost }: { skills: Skill[]; ski
     const [createNewOrder, setCreateNewOrder] = useState(false);
     const [skill, setSkill] = useState<Skill | boolean>(false);
     const [editedSkills, setEditedSkills] = useState(skills);
-    console.log('editedSkills: ', editedSkills);
     const enabledSkills = editedSkills.filter(({ enabled }) => enabled);
 
     useEffect(() => {
@@ -51,7 +50,6 @@ export default function SkillsTab({ skills, skillsHost }: { skills: Skill[]; ski
 
             setConfirmed(false);
         } catch (error) {
-            console.log('error: ', error);
             catchError(t, error)
         } finally {
             setLoading(false);

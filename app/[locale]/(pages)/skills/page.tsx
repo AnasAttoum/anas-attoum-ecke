@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { SkillFindManyArgs } from "@/app/generated/prisma/models";
 import { skillsHost } from "@/lib/images-hosts";
 import prisma, { prismaConfig } from "@/lib/prisma";
