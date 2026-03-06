@@ -4,15 +4,16 @@ import { useTranslations } from 'next-intl'
 import { Skill } from '@/app/generated/prisma/browser'
 import Image from 'next/image'
 import { useState } from 'react'
-import { toasterError, toasterSuccess } from '../toaster/toaster'
 import { useRouter } from '@/lib/localization/navigation'
 import { Trash } from 'lucide-react'
+import { catchError, checkIfResIsOk } from '@/lib/errors'
 
 type Props = {
     item: Skill;
+    skillsHost: string;
 }
 
-export default function DeleteDialog({ item }: Props) {
+export default function DeleteDialog({ item, skillsHost }: Props) {
     const t = useTranslations();
     const router = useRouter();
     const { id, name, image } = item;
@@ -31,23 +32,11 @@ export default function DeleteDialog({ item }: Props) {
                 body: JSON.stringify({ id })
             });
 
-            if (res.ok) {
-                const data = await res.json();
-                toasterSuccess(t(data.message));
+            await checkIfResIsOk(t, res, router);
 
-                setOpen(false);
-                router.refresh()
-            }
-            else {
-                if (res.status === 401) router.refresh();
-                throw new Error(t((await res.json())?.message || "toaster.error"));
-            }
+            setOpen(false);
         } catch (error) {
-            if (error instanceof Error) {
-                toasterError(error?.message || t("toaster.error"));
-            } else {
-                toasterError(t("toaster.error"));
-            }
+            catchError(t, error)
         }
         finally {
             setLoading(false);
@@ -62,7 +51,7 @@ export default function DeleteDialog({ item }: Props) {
                 <DialogContent className="flex flex-col items-center gap-10">
                     <DialogHeader>
                         <div className='relative mx-auto size-12'>
-                            <Image src={image} alt={name} fill className="object-contain" />
+                            <Image src={skillsHost + image} alt={name} fill className="object-contain" />
                         </div>
                         <DialogTitle className="mx-auto">
                             {t.rich("delete-confirm", {

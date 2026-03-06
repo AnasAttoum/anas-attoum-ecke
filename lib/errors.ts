@@ -13,6 +13,7 @@ export const checkIfResIsOk = async (
 
   const data = await res.json();
   toasterSuccess(t(data.message));
+  router.refresh();
 };
 
 export const catchError = async (t: _Translator, error: Error | unknown) => {

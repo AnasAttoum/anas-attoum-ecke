@@ -1,11 +1,11 @@
 import { useTranslations } from "next-intl";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { toasterError, toasterSuccess } from "@/components/toaster/toaster";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "@/lib/localization/navigation";
 import { Dispatch, SetStateAction, useEffect, useMemo } from "react";
 import { Skill } from "@/app/generated/prisma/browser";
+import { catchError, checkIfResIsOk } from "@/lib/errors";
 
 export default function useSkillLogic(
   skill: Skill | boolean,
@@ -43,7 +43,6 @@ export default function useSkillLogic(
     getValues,
     setValue,
     control,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     defaultValues,
@@ -60,35 +59,26 @@ export default function useSkillLogic(
         body: JSON.stringify(values),
       });
 
-      if (!res.ok) {
-        if (res.status === 401) router.refresh();
-        throw new Error(t((await res.json())?.message || "toaster.error"));
-      }
-
-      const data = await res.json();
-      toasterSuccess(t(data.message));
+      await checkIfResIsOk(t, res, router);
 
       setSkill(false);
-      router.refresh();
       reset();
     } catch (error) {
-      if (error instanceof Error) {
-        toasterError(error?.message || t("toaster.error"));
-      } else {
-        toasterError(t("toaster.error"));
-      }
+      catchError(t, error);
     }
   };
 
   useEffect(() => {
     if (!skill) return;
 
-    if (typeof skill === "object")
-      reset(skill);
+    if (typeof skill === "object") reset(skill);
     else reset(defaultValues);
   }, [skill, reset, defaultValues]);
 
-  const watchImage = watch('image')
+  const watchImage = useWatch({
+    control,
+    name: "image",
+  });
 
   return {
     t,

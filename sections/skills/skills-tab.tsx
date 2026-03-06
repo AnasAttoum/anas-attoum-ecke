@@ -6,8 +6,7 @@ import { bulkChildrenAnimation } from "@/lib/animation";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useRef, useState } from "react";
-import Skills from "./skills";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import SubmitButton from "@/components/buttons/submit-button/submit-button";
 import ToggleEnableDialog from "@/components/dialogs/toggle-enable-dialog";
 import AddSkill from "@/components/dialogs/skill/add-skill";
@@ -18,6 +17,7 @@ import { useSortable } from '@dnd-kit/react/sortable';
 import { move } from '@dnd-kit/helpers';
 import { useRouter } from "@/lib/localization/navigation";
 import { catchError, checkIfResIsOk } from "@/lib/errors";
+import Skills from "./skills";
 
 export default function SkillsTab({ skills, skillsHost }: { skills: Skill[]; skillsHost: string }) {
 
@@ -29,7 +29,12 @@ export default function SkillsTab({ skills, skillsHost }: { skills: Skill[]; ski
     const [createNewOrder, setCreateNewOrder] = useState(false);
     const [skill, setSkill] = useState<Skill | boolean>(false);
     const [editedSkills, setEditedSkills] = useState(skills);
+    console.log('editedSkills: ', editedSkills);
     const enabledSkills = editedSkills.filter(({ enabled }) => enabled);
+
+    useEffect(() => {
+        setEditedSkills(skills)
+    }, [skills, setEditedSkills])
 
     const submit = async () => {
         try {
@@ -44,7 +49,6 @@ export default function SkillsTab({ skills, skillsHost }: { skills: Skill[]; ski
 
             await checkIfResIsOk(t, res, router);
 
-            router.refresh();
             setConfirmed(false);
         } catch (error) {
             console.log('error: ', error);
@@ -74,7 +78,7 @@ export default function SkillsTab({ skills, skillsHost }: { skills: Skill[]; ski
                             index={index}
                             confirmed={confirmed}
                             setSkill={setSkill}
-                            orderChanged={skill.id !== editedSkills[index].id}
+                            orderChanged={skill.id !== editedSkills?.[index]?.id}
                             skillsHost={skillsHost}
                         />
                     )}
@@ -83,7 +87,7 @@ export default function SkillsTab({ skills, skillsHost }: { skills: Skill[]; ski
 
             {confirmed &&
                 <div className="pb-5 bg-primary/50 rounded-md">
-                    <Skills skills={enabledSkills} />
+                    <Skills skills={enabledSkills} skillsHost={skillsHost} />
                     {/* <div className="flex flex-nowrap gap-1 md:gap-3 p-2 md:p-3">
                         <ToAnimation to="right" className="flex-1 min-w-0" >
                             <Code src={skills} title="before" />
@@ -162,9 +166,9 @@ export function SkillItem(
                     </div>
 
                     <div className="flex justify-center items-center gap-2">
-                        <ToggleEnableDialog item={skill} />
+                        <ToggleEnableDialog item={skill} skillsHost={skillsHost} />
                         <EditButton openDialog={() => setSkill(skill)} />
-                        <DeleteDialog item={skill} />
+                        <DeleteDialog item={skill} skillsHost={skillsHost} />
                     </div>
                 </div>
             </ToAnimation>
