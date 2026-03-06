@@ -7,14 +7,16 @@ import useSkillLogic from "./useSkillLogic";
 import Input from "@/components/inputs/input";
 import { ColorPicker } from "@/components/inputs/color-picker";
 import SwitchInput from "@/components/inputs/switch-input";
+import Image from "next/image";
 
 type Props = {
     skill: Skill | boolean;
     setSkill: Dispatch<SetStateAction<boolean | Skill>>
     skillsLength: number;
+    skillsHost: string;
 }
 
-export default function AddSkill({ skill, setSkill, skillsLength = 1 }: Props) {
+export default function AddSkill({ skill, setSkill, skillsLength = 1, skillsHost }: Props) {
 
     const {
         t,
@@ -27,6 +29,7 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1 }: Props) {
         setValue,
         control,
         isEditing,
+        watchImage,
     } = useSkillLogic(skill, skillsLength, setSkill);
 
     return (
@@ -47,9 +50,14 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1 }: Props) {
                                 {t(isEditing ? "edit-skill" : "add-skill")}
                             </DialogTitle>
                         </DialogHeader>
+
                         <Input name="name" label="name" register={register} errors={errors} />
+
                         <ColorPicker defaultValue={getValues().color} setValue={setValue} />
+
                         <Input name="image" label="image" register={register} errors={errors} />
+                        <Image src={skillsHost + watchImage} alt={t("image")} width={50} height={50} className="mx-auto" />
+
                         <SwitchInput name="enabled" control={control} />
 
                         <DialogFooter className="max-sm:w-full">

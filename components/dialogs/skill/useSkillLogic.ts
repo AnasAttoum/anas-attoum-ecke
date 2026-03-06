@@ -43,6 +43,7 @@ export default function useSkillLogic(
     getValues,
     setValue,
     control,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     defaultValues,
@@ -83,9 +84,11 @@ export default function useSkillLogic(
     if (!skill) return;
 
     if (typeof skill === "object")
-      reset({ ...skill, image: skill?.image.split("/")?.[4] });
+      reset(skill);
     else reset(defaultValues);
   }, [skill, reset, defaultValues]);
+
+  const watchImage = watch('image')
 
   return {
     t,
@@ -98,5 +101,6 @@ export default function useSkillLogic(
     setValue,
     control,
     isEditing,
+    watchImage,
   };
 }

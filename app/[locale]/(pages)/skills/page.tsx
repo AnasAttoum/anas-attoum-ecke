@@ -6,5 +6,5 @@ import SkillsTab from "@/sections/skills-tab";
 export default async function Skills() {
   const skills = await prisma.skill.findMany(prismaConfig as SkillFindManyArgs);
 
-  return <SkillsTab skills={skills.map((skill) => ({ ...skill, image: skillsHost + skill.image }))} />;
+  return <SkillsTab skills={skills.map((skill) => ({ ...skill, image: skill.image }))} skillsHost={skillsHost!} />;
 }

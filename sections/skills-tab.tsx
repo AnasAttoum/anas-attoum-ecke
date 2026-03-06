@@ -19,7 +19,7 @@ import { move } from '@dnd-kit/helpers';
 import { useRouter } from "@/lib/localization/navigation";
 import { catchError, checkIfResIsOk } from "@/lib/errors";
 
-export default function SkillsTab({ skills }: { skills: Skill[] }) {
+export default function SkillsTab({ skills, skillsHost }: { skills: Skill[]; skillsHost: string }) {
 
     const t = useTranslations();
     const router = useRouter();
@@ -58,7 +58,7 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
     return (
         <section className="flex flex-col gap-5">
 
-            <AddSkill skill={skill} setSkill={setSkill} skillsLength={skills.length} />
+            <AddSkill skill={skill} setSkill={setSkill} skillsLength={skills.length} skillsHost={skillsHost} />
 
             <DragDropProvider
                 onDragEnd={(event) => {
@@ -75,6 +75,7 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
                             confirmed={confirmed}
                             setSkill={setSkill}
                             orderChanged={skill.id !== editedSkills[index].id}
+                            skillsHost={skillsHost}
                         />
                     )}
                 </div>
@@ -112,12 +113,13 @@ export default function SkillsTab({ skills }: { skills: Skill[] }) {
 }
 
 export function SkillItem(
-    { skill, index, confirmed, setSkill, orderChanged }: {
+    { skill, index, confirmed, setSkill, orderChanged, skillsHost }: {
         skill: Skill;
         index: number;
         confirmed: boolean;
         setSkill: Dispatch<SetStateAction<boolean | Skill>>;
         orderChanged: boolean;
+        skillsHost: string;
     }) {
     const { id, name, order, image, color, enabled } = skill;
 
@@ -151,7 +153,7 @@ export function SkillItem(
                     <strong>{name}</strong>
 
                     <div className="relative">
-                        <Image src={image} alt={name} fill className="object-contain" />
+                        <Image src={skillsHost + image} alt={name} fill className="object-contain" />
                     </div>
 
                     <div className="flex gap-1">
