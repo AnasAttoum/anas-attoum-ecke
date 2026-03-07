@@ -60,7 +60,7 @@ export default function SkillsTab({ skills, skillsHost, skillsSource }: { skills
     return (
         <section className="flex flex-col gap-5">
 
-            <AddSkill skill={skill} setSkill={setSkill} skillsLength={skills.length} skillsHost={skillsHost} skillsSource={skillsSource} />
+            <AddSkill skill={skill} setSkill={setSkill} skillsLength={skills.length} enabledLength={enabledSkills.length} skillsHost={skillsHost} skillsSource={skillsSource} />
 
             <DragDropProvider
                 onDragEnd={(event) => {

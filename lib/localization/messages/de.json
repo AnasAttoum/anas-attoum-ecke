@@ -77,5 +77,6 @@
   "enabled": "Aktiviert",
   "disabled": "Deaktiviert",
   "delete": "Löschen",
-  "source": "Quelle"
+  "source": "Quelle",
+  "total": "Gesamt"
 }
