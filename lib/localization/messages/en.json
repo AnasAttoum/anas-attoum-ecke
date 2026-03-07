@@ -76,5 +76,6 @@
   "disable": "Disable",
   "enabled": "Enabled",
   "disabled": "Disabled",
-  "delete": "Delete"
+  "delete": "Delete",
+  "source": "Source"
 }

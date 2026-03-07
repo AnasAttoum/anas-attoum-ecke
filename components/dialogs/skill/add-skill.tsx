@@ -2,7 +2,7 @@ import { Skill } from "@/app/generated/prisma/browser";
 import { Dispatch, SetStateAction } from "react";
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "../../ui/dialog";
 import { Button } from "../../ui/button";
-import { SparkleIcon } from "lucide-react";
+import { SparkleIcon, Tv } from "lucide-react";
 import useSkillLogic from "./useSkillLogic";
 import Input from "@/components/inputs/input";
 import { ColorPicker } from "@/components/inputs/color-picker";
@@ -14,9 +14,10 @@ type Props = {
     setSkill: Dispatch<SetStateAction<boolean | Skill>>
     skillsLength: number;
     skillsHost: string;
+    skillsSource: string;
 }
 
-export default function AddSkill({ skill, setSkill, skillsLength = 1, skillsHost }: Props) {
+export default function AddSkill({ skill, setSkill, skillsLength = 1, skillsHost, skillsSource }: Props) {
 
     const {
         t,
@@ -34,9 +35,21 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1, skillsHost
 
     return (
         <>
-            <div className="flex justify-end">
+            <div className="flex flex-wrap gap-3 justify-end">
+                <a
+                    href={skillsSource}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <Button>
+                        <div className="flex items-center gap-2">
+                            <Tv />
+                            {t("source")}
+                        </div>
+                    </Button>
+                </a>
                 <Button onClick={() => setSkill(true)}>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2">
                         <SparkleIcon />
                         {t("add")}
                     </div>

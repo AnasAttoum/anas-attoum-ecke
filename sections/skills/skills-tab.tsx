@@ -19,7 +19,7 @@ import { useRouter } from "@/lib/localization/navigation";
 import { catchError, checkIfResIsOk } from "@/lib/errors";
 import Skills from "./skills";
 
-export default function SkillsTab({ skills, skillsHost }: { skills: Skill[]; skillsHost: string }) {
+export default function SkillsTab({ skills, skillsHost, skillsSource }: { skills: Skill[]; skillsHost: string; skillsSource: string }) {
 
     const t = useTranslations();
     const router = useRouter();
@@ -60,7 +60,7 @@ export default function SkillsTab({ skills, skillsHost }: { skills: Skill[]; ski
     return (
         <section className="flex flex-col gap-5">
 
-            <AddSkill skill={skill} setSkill={setSkill} skillsLength={skills.length} skillsHost={skillsHost} />
+            <AddSkill skill={skill} setSkill={setSkill} skillsLength={skills.length} skillsHost={skillsHost} skillsSource={skillsSource} />
 
             <DragDropProvider
                 onDragEnd={(event) => {

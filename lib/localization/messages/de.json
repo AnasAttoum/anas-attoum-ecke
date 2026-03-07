@@ -76,5 +76,6 @@
   "disable": "Deaktivieren",
   "enabled": "Aktiviert",
   "disabled": "Deaktiviert",
-  "delete": "Löschen"
+  "delete": "Löschen",
+  "source": "Quelle"
 }

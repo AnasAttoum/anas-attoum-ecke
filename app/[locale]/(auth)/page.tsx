@@ -2,7 +2,7 @@ import LetterAnimation from '@/components/gsap/letter-animation';
 import Form from './form/form';
 import ToAnimation from '@/components/gsap/to-animation';
 import Photo from '@/components/photo/photo';
-import { AnasAttoum1 } from '@/lib/images-hosts';
+import { ENV } from '@/lib/env';
 
 export default async function Page() {
 
@@ -40,7 +40,7 @@ export default async function Page() {
                     {/* Right */}
                     <div className="max-lg:hidden lg:col-span-1 flex justify-center items-center relative">
                         <ToAnimation to="none" order={4}>
-                            <Photo src={AnasAttoum1!} />
+                            <Photo src={ENV.AnasAttoum1!} />
                         </ToAnimation>
                     </div>
 
