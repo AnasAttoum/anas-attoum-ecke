@@ -3,7 +3,7 @@
 import { Skill } from "@/app/generated/prisma/browser";
 import ToAnimation from "@/components/gsap/to-animation";
 import { bulkChildrenAnimation } from "@/lib/animation";
-import { cn } from "@/lib/utils";
+import { cn, detectChanges } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
@@ -43,7 +43,7 @@ export default function SkillsTab({ skills, skillsHost, skillsSource }: { skills
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(editedSkills),
+                body: JSON.stringify(detectChanges(skills, editedSkills)),
             });
 
             await checkIfResIsOk(t, res, router);
@@ -64,8 +64,16 @@ export default function SkillsTab({ skills, skillsHost, skillsSource }: { skills
 
             <DragDropProvider
                 onDragEnd={(event) => {
-                    setEditedSkills((items) => move(items, event));
-                    setCreateNewOrder(true);
+                    setEditedSkills((items) => {
+                        setCreateNewOrder(true);
+
+                        const newItems = move(items, event);
+
+                        return newItems.map((item, index) => ({
+                            ...item,
+                            order: newItems.length - index,
+                        }));
+                    });
                 }}
             >
                 <div className="flex flex-col gap-5 text-black mb-5">

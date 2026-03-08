@@ -3,9 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import verifyToken from "../../verify-token";
 import { Skill } from "@/app/generated/prisma/client";
 
-export async function PUT(
-  req: NextRequest,
-) {
+export async function PUT(req: NextRequest) {
   const isValid = await verifyToken(req);
   if (!isValid) {
     return NextResponse.json(
