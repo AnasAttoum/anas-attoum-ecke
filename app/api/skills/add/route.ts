@@ -14,8 +14,15 @@ export async function POST(req: NextRequest) {
 
     const data = await req.json();
 
+    const aggregate = await prisma.skill.aggregate({
+      _max: {
+        order: true,
+      },
+    });
+    const maxOrder = aggregate?._max?.order ?? 0;
+
     await prisma.skill.create({
-      data,
+      data: { ...data, order: maxOrder + 1 },
     });
 
     return NextResponse.json({
