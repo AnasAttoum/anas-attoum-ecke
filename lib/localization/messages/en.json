@@ -78,5 +78,6 @@
   "disabled": "Disabled",
   "delete": "Delete",
   "source": "Source",
-  "total": "Total"
+  "total": "Total",
+  "reset": "Reset"
 }

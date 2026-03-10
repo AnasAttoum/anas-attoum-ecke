@@ -1,8 +1,7 @@
 "use client";
 
 import { Skill } from "@/app/generated/prisma/browser";
-import ToAnimation from "@/components/gsap/to-animation";
-import { bulkChildrenAnimation } from "@/lib/animation";
+import ToAnimation, { ToAnimationWrapper } from "@/components/gsap/to-animation";
 import { cn, detectChanges } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -56,6 +55,13 @@ export default function SkillsTab({ skills, skillsHost, skillsSource }: { skills
         }
     }
 
+    const resetOrder = () => {
+        setEditedSkills(skills);
+
+        setCreateNewOrder(false);
+        setConfirmed(false);
+    };
+
 
     return (
         <section className="flex flex-col gap-5">
@@ -77,15 +83,16 @@ export default function SkillsTab({ skills, skillsHost, skillsSource }: { skills
                 }}
             >
                 <div className="flex flex-col gap-5 text-black mb-5">
-                    {skills.map((skill, index) =>
+                    {editedSkills.map((skill, index) =>
                         <SkillItem
                             key={skill.id}
                             skill={skill}
                             index={index}
                             confirmed={confirmed}
                             setSkill={setSkill}
-                            orderChanged={skill.id !== editedSkills?.[index]?.id}
+                            orderChanged={skill.id !== skills?.[index]?.id}
                             skillsHost={skillsHost}
+                            createNewOrder={createNewOrder}
                         />
                     )}
                 </div>
@@ -113,9 +120,14 @@ export default function SkillsTab({ skills, skillsHost, skillsSource }: { skills
                         </ToAnimation>
                         : null
                     :
-                    <ToAnimation to="top">
-                        <SubmitButton onClick={submit} loading={loading} />
-                    </ToAnimation>
+                    <div className="flex gap-5">
+                        <ToAnimation to="top" className="flex-2">
+                            <SubmitButton onClick={submit} loading={loading} />
+                        </ToAnimation>
+                        <ToAnimation to="bottom" className="flex-1">
+                            <button onClick={resetOrder} className="secondaryBtn">{t("reset")}</button>
+                        </ToAnimation>
+                    </div>
                 }
             </div>
         </section>
@@ -123,19 +135,20 @@ export default function SkillsTab({ skills, skillsHost, skillsSource }: { skills
 }
 
 export function SkillItem(
-    { skill, index, confirmed, setSkill, orderChanged, skillsHost }: {
+    { skill, index, confirmed, setSkill, orderChanged, skillsHost, createNewOrder }: {
         skill: Skill;
         index: number;
         confirmed: boolean;
         setSkill: Dispatch<SetStateAction<boolean | Skill>>;
         orderChanged: boolean;
         skillsHost: string;
+        createNewOrder: boolean;
     }) {
     const { id, name, order, image, color, enabled } = skill;
 
     const [element, setElement] = useState<Element | null>(null);
     const handleRef = useRef<HTMLDivElement | null>(null);
-    const { isDragging, } = useSortable({ id, index, element, handle: handleRef });
+    const { isDragging } = useSortable({ id, index, element, handle: handleRef });
 
     return (
         <div
@@ -145,10 +158,7 @@ export function SkillItem(
                 confirmed && "grayscale pointer-events-none",
             )}
         >
-            <ToAnimation
-                to={index % 2 === 0 ? "left" : "right"}
-                order={bulkChildrenAnimation(index)}
-            >
+            <ToAnimationWrapper preventAnimation={orderChanged || createNewOrder} index={index}>
                 <div
                     className={cn(
                         "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-1 min-[350px]:grid-cols-2 md:grid-cols-4 gap-5",
@@ -177,7 +187,7 @@ export function SkillItem(
                         <DeleteDialog item={skill} skillsHost={skillsHost} />
                     </div>
                 </div>
-            </ToAnimation>
+            </ToAnimationWrapper>
         </div>
     )
 }

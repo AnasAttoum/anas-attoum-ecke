@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ClassValue } from "clsx";
 import clsx from "clsx";
-import { animationSpeed } from "@/lib/animation";
+import { animationSpeed, bulkChildrenAnimation } from "@/lib/animation";
 
 type Props = {
     children: ReactNode;
@@ -65,4 +65,17 @@ export default function ToAnimation({ children, order = 1, to = "right", classNa
     }, [order, to]);
 
     return <div ref={ref} className={clsx("opacity-0", className)}>{children}</div>;
+}
+
+export function ToAnimationWrapper({ children, preventAnimation = false, index }: { children: ReactNode; preventAnimation: boolean; index: number }) {
+    if (!preventAnimation)
+        return (
+            <ToAnimation
+                to={index % 2 === 0 ? "left" : "right"}
+                order={bulkChildrenAnimation(index)}
+            >
+                {children}
+            </ToAnimation>
+        );
+    return children;
 }
