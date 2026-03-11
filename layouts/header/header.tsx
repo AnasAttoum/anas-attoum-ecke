@@ -9,6 +9,7 @@ import LocaleSwitcher from "@/components/buttons/locale-switcher/locale-switcher
 import Logout from "@/components/buttons/logout/logout";
 import { usePathname } from "@/lib/localization/navigation";
 import { paths } from "@/lib/paths";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 // Disable SSR for this component
 const ThemeToggle = dynamic(() => import('@/components/buttons/theme-toggle/theme-toggle'), {
@@ -20,6 +21,8 @@ export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
+
+  const isLoggedIn = pathname !== paths.login;
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -55,12 +58,15 @@ export default function Header() {
     >
 
       <div className="flex justify-between items-center h-20 shadow dark:shadow-black x-spacing backdrop-blur-sm overflow-visible!">
-        <Logo />
+        <div className="flex items-center gap-10">
+          {isLoggedIn && <SidebarTrigger />}
+          <Logo />
+        </div>
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
           <LocaleSwitcher />
-          {pathname !== paths.login && <Logout />}
+          {isLoggedIn && <Logout />}
         </div>
       </div>
 
