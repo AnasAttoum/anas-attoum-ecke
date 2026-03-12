@@ -1,5 +1,4 @@
 import Header from '@/layouts/header/header';
-import Footer from '@/layouts/footer/footer';
 import ScrollToTop from '@/lib/scroll-to-top';
 
 type Props = {
@@ -13,7 +12,6 @@ export default async function Layout({ children }: Props) {
       <ScrollToTop />
       <Header />
         {children}
-      <Footer />
     </>
   )
 }

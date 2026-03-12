@@ -115,7 +115,7 @@ section {
 }
 
 .x-spacing {
-  @apply px-5 sm:px-16 md:px-24 lg:px-32 overflow-x-hidden;
+  @apply px-5 md:px-16 lg:px-24 overflow-x-hidden;
 }
 
 .h1 {

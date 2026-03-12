@@ -1,5 +1,4 @@
 import Header from '@/layouts/header/header';
-import Footer from '@/layouts/footer/footer';
 import ScrollToTop from '@/lib/scroll-to-top';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/layouts/sidebar/sidebar';
@@ -19,7 +18,6 @@ export default async function Layout({ children }: Props) {
         <div className="x-spacing" style={{ minHeight: "calc(100dvh - 5rem)" }}>
           {children}
         </div>
-        <Footer />
       </main>
     </SidebarProvider>
   )

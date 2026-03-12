@@ -187,7 +187,7 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+          className="w-(--sidebar-width) bg-transparent border-none p-0 text-sidebar-foreground [&>button]:text-white"
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -369,12 +369,40 @@ function SidebarSeparator({
 }
 
 function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
+  const [isVisible, setIsVisible] = React.useState(true);
+  const [lastScrollY, setLastScrollY] = React.useState(0);
+
+  React.useEffect(() => {
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY;
+      // 1. Always show at the very top
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      }
+      // 2. Hide if scrolling down
+      else if (currentScrollY > lastScrollY) {
+        setIsVisible(false);
+      }
+      // 3. Show if scrolling up
+      else {
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+    return () => {
+      window.removeEventListener('scroll', controlNavbar);
+    };
+  }, [lastScrollY]);
+
   return (
     <div
       data-slot="sidebar-content"
       data-sidebar="content"
       className={cn(
-        "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden bg-primary rounded-md mt-20",
+        "flex min-h-0 flex-1 flex-col gap-2 transition overflow-auto group-data-[collapsible=icon]:overflow-hidden bg-primary rounded-md shadow",
+        isVisible && "md:mt-20",
         className
       )}
       {...props}
@@ -569,7 +597,7 @@ function SidebarMenuAction({
         "peer-data-[size=lg]/menu-button:top-2.5",
         "group-data-[collapsible=icon]:hidden",
         showOnHover &&
-          "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-data-[active=true]/menu-button:text-sidebar-accent-foreground data-[state=open]:opacity-100 md:opacity-0",
+        "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-data-[active=true]/menu-button:text-sidebar-accent-foreground data-[state=open]:opacity-100 md:opacity-0",
         className
       )}
       {...props}
