@@ -18,7 +18,7 @@ import { useRouter } from "@/lib/localization/navigation";
 import { catchError, checkIfResIsOk } from "@/lib/errors";
 import Skills from "./skills";
 
-export default function SkillsTab({ skills, skillsHost, skillsSource }: { skills: Skill[]; skillsHost: string; skillsSource: string }) {
+export default function SkillsTable({ skills, skillsHost, skillsSource }: { skills: Skill[]; skillsHost: string; skillsSource: string }) {
 
     const t = useTranslations();
     const router = useRouter();
