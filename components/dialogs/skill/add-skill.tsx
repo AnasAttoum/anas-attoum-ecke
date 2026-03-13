@@ -39,9 +39,9 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1, enabledLen
             <div className="flex justify-end">
                 <div className="flex flex-wrap items-center gap-3 max-sm:w-full">
                     <div className="flex gap-3 text-center flex-nowrap">
-                        <div>{t('total')} : <span className="text-primary font-semibold">{skillsLength}</span></div>
-                        <div>/</div>
                         <div>{t("enabled")} : <span className="text-primary font-semibold">{enabledLength}</span></div>
+                        <div>/</div>
+                        <div>{t('total')} : <span className="text-primary font-semibold">{skillsLength}</span></div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 max-sm:w-full gap-3">
                         <a
