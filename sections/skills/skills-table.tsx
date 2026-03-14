@@ -4,7 +4,6 @@ import { Skill } from "@/app/generated/prisma/browser";
 import ToAnimation, { ToAnimationWrapper } from "@/components/gsap/to-animation";
 import { cn, detectChanges } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import SubmitButton from "@/components/buttons/submit-button/submit-button";
 import ToggleEnableDialog from "@/components/dialogs/toggle-enable-dialog";
@@ -17,6 +16,7 @@ import { move } from '@dnd-kit/helpers';
 import { useRouter } from "@/lib/localization/navigation";
 import { catchError, checkIfResIsOk } from "@/lib/errors";
 import Skills from "./skills";
+import PhotoViewer from "@/components/photo/photo-viewer";
 
 export default function SkillsTable({ skills, skillsHost, skillsSource }: { skills: Skill[]; skillsHost: string; skillsSource: string }) {
 
@@ -172,9 +172,7 @@ export function SkillItem(
 
                     <strong>{name}</strong>
 
-                    <div className="relative">
-                        <Image src={skillsHost + image} alt={name} fill className="object-contain" />
-                    </div>
+                    <PhotoViewer src={skillsHost + image} alt={name} />
 
                     <div className="flex gap-1">
                         <div className="h-full aspect-square rounded-md" style={{ backgroundColor: color }} />
