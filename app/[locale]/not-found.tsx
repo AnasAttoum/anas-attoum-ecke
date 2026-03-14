@@ -7,7 +7,7 @@ export default async function Page() {
 
     return (
         <>
-            <Header />
+            <Header withoutToggle />
             <div className="h-screen min-h-130 flex flex-col items-center justify-center relative overflow-hidden px-4">
                 <div className="absolute top-0 right-0 w-48 h-48 md:w-72 md:h-72">
                     <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-dark rounded-bl-[80px]" />

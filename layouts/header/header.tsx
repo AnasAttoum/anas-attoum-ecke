@@ -17,7 +17,7 @@ const ThemeToggle = dynamic(() => import('@/components/buttons/theme-toggle/them
   loading: () => <button className="simpleBtn invisible">🔆</button>
 });
 
-export default function Header() {
+export default function Header({ withoutToggle = false }: { withoutToggle?: boolean }) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
@@ -59,7 +59,7 @@ export default function Header() {
 
       <div className="flex justify-between items-center h-20 shadow dark:shadow-black x-spacing backdrop-blur-sm overflow-visible!">
         <div className="flex items-center gap-10">
-          {isLoggedIn && <SidebarTrigger />}
+          {isLoggedIn && !withoutToggle && <SidebarTrigger />}
           <Logo />
         </div>
 
