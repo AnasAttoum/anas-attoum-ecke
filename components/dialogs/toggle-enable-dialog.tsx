@@ -2,18 +2,19 @@ import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogT
 import { Button } from '../ui/button'
 import { useTranslations } from 'next-intl'
 import { Switch } from '../ui/switch'
-import { Skill } from '@/app/generated/prisma/browser'
+import { Project, Skill } from '@/app/generated/prisma/browser'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from '@/lib/localization/navigation'
 import { catchError, checkIfResIsOk } from '@/lib/errors'
 
 type Props = {
-    item: Skill;
-    skillsHost: string;
+    item: Skill | Project;
+    skillsHost?: string;
+    projectsHost?: string;
 }
 
-export default function ToggleEnableDialog({ item, skillsHost }: Props) {
+export default function ToggleEnableDialog({ item, skillsHost, projectsHost }: Props) {
     const t = useTranslations();
     const router = useRouter();
     const { id, name, image, enabled } = item;

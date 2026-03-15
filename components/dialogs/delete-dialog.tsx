@@ -1,7 +1,7 @@
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '../ui/dialog'
 import { Button } from '../ui/button'
 import { useTranslations } from 'next-intl'
-import { Skill } from '@/app/generated/prisma/browser'
+import { Project, Skill } from '@/app/generated/prisma/browser'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from '@/lib/localization/navigation'
@@ -9,11 +9,12 @@ import { Trash } from 'lucide-react'
 import { catchError, checkIfResIsOk } from '@/lib/errors'
 
 type Props = {
-    item: Skill;
-    skillsHost: string;
+    item: Skill | Project;
+    skillsHost?: string;
+    projectsHost?: string;
 }
 
-export default function DeleteDialog({ item, skillsHost }: Props) {
+export default function DeleteDialog({ item, skillsHost, projectsHost }: Props) {
     const t = useTranslations();
     const router = useRouter();
     const { id, name, image } = item;

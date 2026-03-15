@@ -79,5 +79,9 @@
   "delete": "Delete",
   "source": "Source",
   "total": "Total",
-  "reset": "Reset"
+  "reset": "Reset",
+  "project": "Project",
+  "page": "Page",
+  "game": "Game",
+  "component": "Component"
 }
