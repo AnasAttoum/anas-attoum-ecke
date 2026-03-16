@@ -5,8 +5,11 @@ import { ENV } from "@/lib/env";
 import prisma, { prismaConfig } from "@/lib/prisma";
 import ProjectsTable from "@/sections/projects/projects-table";
 
-export default async function Projects() {
+export default async function Projects({ searchParams }: { searchParams: Promise<{ type?: string }> }) {
+  const search = await searchParams;
+  const { type } = search;
+
   const projects = await prisma.project.findMany(prismaConfig as ProjectFindManyArgs);
 
-  return <ProjectsTable projects={projects.map((project) => ({ ...project, image: project.image }))} projectsHost={ENV.projectsHost!} projectsSource={ENV.projectsSource!} />;
+  return <ProjectsTable projects={projects.map((project) => ({ ...project, image: project.image }))} projectsHost={ENV.projectsHost!} projectsSource={ENV.projectsSource!} initialType={type} />;
 }

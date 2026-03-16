@@ -17,8 +17,9 @@ import { catchError, checkIfResIsOk } from "@/lib/errors";
 import { Project } from "@/app/generated/prisma/browser";
 import Projects from "./projects";
 import PhotoViewer from "@/components/photo/photo-viewer";
+import FilterChip from "@/components/buttons/filter-chip/filter-chip";
 
-export default function ProjectsTable({ projects, projectsHost, projectsSource }: { projects: Project[]; projectsHost: string; projectsSource: string }) {
+export default function ProjectsTable({ projects, projectsHost, projectsSource, initialType }: { projects: Project[]; projectsHost: string; projectsSource: string; initialType?: string; }) {
     const t = useTranslations();
     const router = useRouter();
 
@@ -27,11 +28,17 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource }
     const [createNewOrder, setCreateNewOrder] = useState(false);
     const [project, setproject] = useState<Project | boolean>(false);
     const [editedprojects, setEditedprojects] = useState(projects);
+    const [currentType, setCurrentType] = useState(initialType ?? null);
     const enabledprojects = editedprojects.filter(({ enabled }) => enabled);
 
+    const types = [...new Set(projects.map(p => p.type))].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+
     useEffect(() => {
-        setEditedprojects(projects)
-    }, [projects, setEditedprojects])
+        if (!currentType)
+            setEditedprojects(projects)
+        else
+            setEditedprojects(projects.filter(({ type }) => type === currentType))
+    }, [projects, setEditedprojects, currentType])
 
     const submit = async () => {
         try {
@@ -66,6 +73,22 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource }
         <section className="flex flex-col gap-5">
 
             {/* <Addproject project={project} setproject={setproject} projectsLength={projects.length} enabledLength={enabledprojects.length} projectsHost={projectsHost} projectsSource={projectsSource} /> */}
+
+            <div tabIndex={0} className="flex flex-wrap justify-center gap-5">
+                <FilterChip
+                    active={!currentType}
+                    label="all"
+                    onClick={() => { setCurrentType(null); resetOrder() }}
+                />
+                {types.map((el) => (
+                    <FilterChip
+                        key={el}
+                        active={currentType === el}
+                        label={el + "s"}
+                        onClick={() => setCurrentType(el)}
+                    />
+                ))}
+            </div>
 
             <DragDropProvider
                 onDragEnd={(event) => {
@@ -113,7 +136,7 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource }
 
             <div>
                 {!confirmed
-                    ? createNewOrder
+                    ? createNewOrder && !currentType
                         ? <ToAnimation to="top">
                             <button onClick={() => setConfirmed(true)} className="secondaryBtn">{t("next")}</button>
                         </ToAnimation>
