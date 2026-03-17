@@ -7,7 +7,7 @@ import useSkillLogic from "./useSkillLogic";
 import Input from "@/components/inputs/input";
 import { ColorPicker } from "@/components/inputs/color-picker";
 import SwitchInput from "@/components/inputs/switch-input";
-import Image from "next/image";
+import ImageInput from "@/components/inputs/image-input";
 
 type Props = {
     skill: Skill | boolean;
@@ -79,8 +79,7 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1, enabledLen
 
                         <ColorPicker defaultValue={getValues().color} setValue={setValue} />
 
-                        <Input name="image" label="image" register={register} errors={errors} />
-                        <Image src={skillsHost + watchImage} alt={t("image")} width={50} height={50} className="mx-auto" />
+                        <ImageInput src={skillsHost + watchImage} name="image" label="image" register={register} errors={errors} />
 
                         <SwitchInput name="enabled" control={control} />
 
