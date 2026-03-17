@@ -9,7 +9,6 @@ import { catchError, checkIfResIsOk } from "@/lib/errors";
 
 export default function useSkillLogic(
   skill: Skill | boolean,
-  skillsLength: number,
   setSkill: Dispatch<SetStateAction<boolean | Skill>>,
 ) {
   const t = useTranslations();
@@ -21,7 +20,6 @@ export default function useSkillLogic(
     color: z.string().min(1, t("validation.required")),
     image: z.string().min(1, t("validation.required")),
     enabled: z.boolean(),
-    order: z.number().min(1, t("validation.required")),
   });
   type FormValues = z.infer<typeof formSchema>;
 
@@ -31,9 +29,8 @@ export default function useSkillLogic(
       color: "#a886e4",
       image: "",
       enabled: false,
-      order: skillsLength + 1,
     }),
-    [skillsLength],
+    [],
   );
 
   const {

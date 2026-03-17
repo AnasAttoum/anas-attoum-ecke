@@ -32,7 +32,7 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1, enabledLen
         control,
         isEditing,
         watchImage,
-    } = useSkillLogic(skill, skillsLength, setSkill);
+    } = useSkillLogic(skill, setSkill);
 
     return (
         <>
