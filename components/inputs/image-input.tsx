@@ -7,7 +7,7 @@ type Props<T extends FieldValues> = {
     name: Path<T>;
     register: UseFormRegister<T>;
     errors: FieldErrors<T>;
-    label: string;
+    label?: string;
     src: string;
 };
 
@@ -16,8 +16,8 @@ export default function ImageInput<T extends FieldValues>({ register, errors, na
 
     return (
         <>
-            <Input name={name} label={label} register={register} errors={errors} />
-            <Image src={src} alt={t(label)} width={50} height={50} className="mx-auto" />
+            <Input name={name} label={label ?? name} register={register} errors={errors} />
+            <Image src={src} alt={t(label ?? name)} width={50} height={50} className="mx-auto" />
         </>
     );
 }

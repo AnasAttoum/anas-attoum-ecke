@@ -1,24 +1,24 @@
-import { Skill } from "@/app/generated/prisma/browser";
 import { Dispatch, SetStateAction } from "react";
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "../../ui/dialog";
 import { Button } from "../../ui/button";
 import { SparkleIcon, Tv } from "lucide-react";
-import useSkillLogic from "./useSkillLogic";
 import Input from "@/components/inputs/input";
-import { ColorPicker } from "@/components/inputs/color-picker";
 import SwitchInput from "@/components/inputs/switch-input";
+import Image from "next/image";
+import { Project } from "@/app/generated/prisma/browser";
+import useProjectLogic from "./useProjectLogic";
 import ImageInput from "@/components/inputs/image-input";
 
 type Props = {
-    skill: Skill | boolean;
-    setSkill: Dispatch<SetStateAction<boolean | Skill>>
-    skillsLength: number;
+    project: Project | boolean;
+    setproject: Dispatch<SetStateAction<boolean | Project>>
+    projectsLength: number;
     enabledLength: number;
-    skillsHost: string;
-    skillsSource: string;
+    projectsHost: string;
+    projectsSource: string;
 }
 
-export default function AddSkill({ skill, setSkill, skillsLength = 1, enabledLength = 1, skillsHost, skillsSource }: Props) {
+export default function AddProject({ project, setproject, projectsLength = 1, enabledLength = 1, projectsHost, projectsSource }: Props) {
 
     const {
         t,
@@ -32,7 +32,9 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1, enabledLen
         control,
         isEditing,
         watchImage,
-    } = useSkillLogic(skill, setSkill);
+        watchMockup,
+        watchLogo,
+    } = useProjectLogic(project, setproject);
 
     return (
         <>
@@ -41,11 +43,11 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1, enabledLen
                     <div className="flex gap-3 text-center flex-nowrap">
                         <div>{t("enabled")} : <span className="text-primary font-semibold">{enabledLength}</span></div>
                         <div>/</div>
-                        <div>{t('total')} : <span className="text-primary font-semibold">{skillsLength}</span></div>
+                        <div>{t('total')} : <span className="text-primary font-semibold">{projectsLength}</span></div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 max-sm:w-full gap-3">
                         <a
-                            href={skillsSource}
+                            href={projectsSource}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -56,30 +58,36 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1, enabledLen
                                 </div>
                             </Button>
                         </a>
-                        <Button onClick={() => setSkill(true)}>
+                        <Button onClick={() => setproject(true)}>
                             <div className="flex items-center gap-2">
                                 <SparkleIcon />
                                 {t("add")}
                             </div>
                         </Button>
                     </div>
-                    
+
                 </div>
             </div>
-            <Dialog open={!!skill} onOpenChange={setSkill}>
+            <Dialog open={!!project} onOpenChange={setproject}>
                 <DialogContent>
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
                         <DialogHeader>
                             <DialogTitle className="font-semibold mx-auto">
-                                {t(isEditing ? "edit-skill" : "add-skill")}
+                                {t(isEditing ? "edit-project" : "add-project")}
                             </DialogTitle>
                         </DialogHeader>
 
                         <Input name="name" label="name" register={register} errors={errors} />
 
-                        <ColorPicker defaultValue={getValues().color} setValue={setValue} />
+                        <Input name="code" label="code" register={register} errors={errors} />
+                        <Input name="demo" label="demo" register={register} errors={errors} />
 
-                        <ImageInput src={skillsHost + watchImage} name="image" register={register} errors={errors} />
+                        <Input name="description_de" label={`${t("description")} (DE)`} register={register} errors={errors} withoutTranslate />
+                        <Input name="description_en" label={`${t("description")} (EN)`} register={register} errors={errors} withoutTranslate />
+
+                        <ImageInput src={projectsHost + watchImage} name="image" register={register} errors={errors} />
+                        <ImageInput src={projectsHost + watchMockup} name="mockup" register={register} errors={errors} />
+                        <ImageInput src={projectsHost + watchLogo} name="logo" register={register} errors={errors} />
 
                         <SwitchInput name="enabled" control={control} />
 

@@ -10,9 +10,10 @@ type Props<T extends FieldValues> = {
     label: string;
     type?: HTMLInputTypeAttribute;
     isMainInput?: boolean;
+    withoutTranslate?: boolean;
 };
 
-export default function Input<T extends FieldValues>({ register, errors, name, type = "text", label, isMainInput = false }: Props<T>) {
+export default function Input<T extends FieldValues>({ register, errors, name, type = "text", label, isMainInput = false, withoutTranslate = false }: Props<T>) {
     const t = useTranslations();
 
     const error = errors[name];
@@ -20,7 +21,7 @@ export default function Input<T extends FieldValues>({ register, errors, name, t
     return (
         <div className="flex flex-col">
             <label htmlFor={name} className={cn(isMainInput && "h4")}>
-                {t(label)}
+                {withoutTranslate ? label : t(label)}
             </label>
 
             <input type={type} id={name} {...register(name)} className={cn(isMainInput && "mainInput")} />

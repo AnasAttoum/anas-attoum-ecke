@@ -30,7 +30,10 @@
   "email": "Email",
   "color": "Color",
   "image": "Image",
+  "mockup": "Mockup",
+  "logo": "Logo",
   "message": "Message",
+  "description": "Description",
   "submit": "Submit",
   "back": "Back",
   "code": "Code",
@@ -53,7 +56,8 @@
   },
   "validation": {
     "required": "Required",
-    "invalid-email": "Invalid email address"
+    "invalid-email": "Invalid email address",
+    "invalid-url": "Invalid URL"
   },
   "next": "Next",
   "before": "Before",

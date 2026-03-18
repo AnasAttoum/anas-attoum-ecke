@@ -3,7 +3,6 @@
 import ToAnimation, { ToAnimationWrapper } from "@/components/gsap/to-animation";
 import { cn, detectChanges } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import SubmitButton from "@/components/buttons/submit-button/submit-button";
 import ToggleEnableDialog from "@/components/dialogs/toggle-enable-dialog";
@@ -18,6 +17,7 @@ import { Project } from "@/app/generated/prisma/browser";
 import Projects from "./projects";
 import PhotoViewer from "@/components/photo/photo-viewer";
 import FilterChip from "@/components/buttons/filter-chip/filter-chip";
+import AddProject from "@/components/dialogs/project/add-project";
 
 export default function ProjectsTable({ projects, projectsHost, projectsSource, initialType }: { projects: Project[]; projectsHost: string; projectsSource: string; initialType?: string; }) {
     const t = useTranslations();
@@ -72,7 +72,7 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
     return (
         <section className="flex flex-col gap-5">
 
-            {/* <Addproject project={project} setproject={setproject} projectsLength={projects.length} enabledLength={enabledprojects.length} projectsHost={projectsHost} projectsSource={projectsSource} /> */}
+            <AddProject project={project} setproject={setproject} projectsLength={projects.length} enabledLength={enabledprojects.length} projectsHost={projectsHost} projectsSource={projectsSource} />
 
             <div tabIndex={0} className="flex flex-wrap justify-center gap-5">
                 <FilterChip
@@ -115,6 +115,7 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
                             orderChanged={project.id !== projects?.[index]?.id}
                             projectsHost={projectsHost}
                             createNewOrder={createNewOrder}
+                            currentType={currentType}
                         />
                     )}
                 </div>
@@ -157,7 +158,7 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
 }
 
 export function ProjectItem(
-    { project, index, confirmed, setproject, orderChanged, projectsHost, createNewOrder }: {
+    { project, index, confirmed, setproject, orderChanged, projectsHost, createNewOrder, currentType }: {
         project: Project;
         index: number;
         confirmed: boolean;
@@ -165,6 +166,7 @@ export function ProjectItem(
         orderChanged: boolean;
         projectsHost: string;
         createNewOrder: boolean;
+        currentType: string | null;
     }) {
     const { id, name, order, image, type, enabled } = project;
 
@@ -186,7 +188,7 @@ export function ProjectItem(
                     className={cn(
                         "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-1 min-[350px]:grid-cols-2 md:grid-cols-4 gap-5",
                         !enabled && "bg-[repeating-linear-gradient(-45deg,transparent,transparent_10px,var(--secondary)_10px,var(--secondary)_20px)]",
-                        orderChanged && "border-4 border-primary"
+                        orderChanged && !currentType && "border-4 border-primary"
                     )}
                 >
                     <div ref={handleRef} className="absolute top-0 -left-4 flex items-center h-full cursor-grab">

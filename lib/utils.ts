@@ -15,3 +15,5 @@ export function detectChanges(
     return true;
   });
 }
+
+export const projectTypes = ["project", "page", "game", "component"];

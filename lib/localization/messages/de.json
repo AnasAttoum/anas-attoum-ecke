@@ -30,7 +30,10 @@
   "email": "Email",
   "color": "Farbe",
   "image": "Bild",
+  "mockup": "Mockup",
+  "logo": "Logo",
   "message": "Nachricht",
+  "description": "Beschreibung",
   "submit": "Absenden",
   "back": "Zurück",
   "code": "Code",
@@ -53,7 +56,8 @@
   },
   "validation": {
     "required": "Erforderlich",
-    "invalid-email": "Ungültige E-Mail-Adresse"
+    "invalid-email": "Ungültige E-Mail-Adresse",
+    "invalid-url": "Ungültige URL"
   },
   "next": "Weiter",
   "before": "Vorher",
