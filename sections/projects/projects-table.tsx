@@ -19,7 +19,7 @@ import PhotoViewer from "@/components/photo/photo-viewer";
 import FilterChip from "@/components/buttons/filter-chip/filter-chip";
 import AddProject from "@/components/dialogs/project/add-project";
 
-export default function ProjectsTable({ projects, projectsHost, projectsSource, initialType }: { projects: Project[]; projectsHost: string; projectsSource: string; initialType?: string; }) {
+export default function ProjectsTable({ projects, projectsHost, projectsSource, initialType, uniqueTechnologies }: { projects: Project[]; projectsHost: string; projectsSource: string; initialType?: string; uniqueTechnologies: string[] }) {
     const t = useTranslations();
     const router = useRouter();
 
@@ -72,7 +72,7 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
     return (
         <section className="flex flex-col gap-5">
 
-            <AddProject project={project} setproject={setproject} projectsLength={projects.length} enabledLength={enabledprojects.length} projectsHost={projectsHost} projectsSource={projectsSource} />
+            <AddProject project={project} setproject={setproject} projectsLength={projects.length} enabledLength={enabledprojects.length} projectsHost={projectsHost} projectsSource={projectsSource} uniqueTechnologies={uniqueTechnologies} />
 
             <div tabIndex={0} className="flex flex-wrap justify-center gap-5">
                 <FilterChip

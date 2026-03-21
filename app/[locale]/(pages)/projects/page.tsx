@@ -10,6 +10,8 @@ export default async function Projects({ searchParams }: { searchParams: Promise
   const { type } = search;
 
   const projects = await prisma.project.findMany(prismaConfig as ProjectFindManyArgs);
+  const allTechnologies = projects.flatMap(p => p.technologies);
+  const uniqueTechnologies = Array.from(new Set(allTechnologies));
 
-  return <ProjectsTable projects={projects.map((project) => ({ ...project, image: project.image }))} projectsHost={ENV.projectsHost!} projectsSource={ENV.projectsSource!} initialType={type} />;
+  return <ProjectsTable projects={projects.map((project) => ({ ...project, image: project.image }))} projectsHost={ENV.projectsHost!} projectsSource={ENV.projectsSource!} initialType={type} uniqueTechnologies={uniqueTechnologies} />;
 }

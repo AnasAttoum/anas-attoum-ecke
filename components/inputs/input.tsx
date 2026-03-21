@@ -7,7 +7,7 @@ type Props<T extends FieldValues> = {
     name: Path<T>;
     register: UseFormRegister<T>;
     errors: FieldErrors<T>;
-    label: string;
+    label?: string;
     type?: HTMLInputTypeAttribute;
     isMainInput?: boolean;
     withoutTranslate?: boolean;
@@ -21,7 +21,7 @@ export default function Input<T extends FieldValues>({ register, errors, name, t
     return (
         <div className="flex flex-col">
             <label htmlFor={name} className={cn(isMainInput && "h4")}>
-                {withoutTranslate ? label : t(label)}
+                {withoutTranslate ? label ?? name : t(label ?? name)}
             </label>
 
             <input type={type} id={name} {...register(name)} className={cn(isMainInput && "mainInput")} />

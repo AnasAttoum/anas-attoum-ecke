@@ -75,7 +75,7 @@ export default function AddSkill({ skill, setSkill, skillsLength = 1, enabledLen
                             </DialogTitle>
                         </DialogHeader>
 
-                        <Input name="name" label="name" register={register} errors={errors} />
+                        <Input name="name" register={register} errors={errors} />
 
                         <ColorPicker defaultValue={getValues().color} setValue={setValue} />
 

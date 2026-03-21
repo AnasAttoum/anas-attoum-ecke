@@ -38,6 +38,9 @@
   "back": "Back",
   "code": "Code",
   "demo": "Demo",
+  "type": "Type",
+  "technologies": "Technologies",
+  "video": "Video",
   "other": "Other",
   "overview": "Overview",
   "code-by": "Code with ❤️ by",
@@ -87,5 +90,6 @@
   "project": "Project",
   "page": "Page",
   "game": "Game",
-  "component": "Component"
+  "component": "Component",
+  "search-or-add": "Search or add..."
 }

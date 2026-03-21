@@ -48,8 +48,16 @@ export default function useProjectLogic(
   const defaultValues = useMemo(
     () => ({
       name: "",
-      color: "#a886e4",
+      type: projectTypes[0],
+      code: "",
+      demo: "",
+      description_de: "",
+      description_en: "",
+      technologies: [],
+      video: "",
       image: "",
+      mockup: "",
+      logo: "",
       enabled: false,
     }),
     [],
@@ -67,6 +75,7 @@ export default function useProjectLogic(
     defaultValues,
     resolver: zodResolver(formSchema),
   });
+  console.log('getValues: ', getValues());
 
   const onSubmit = async (values: FormValues) => {
     try {

@@ -4,10 +4,12 @@ import { Button } from "../../ui/button";
 import { SparkleIcon, Tv } from "lucide-react";
 import Input from "@/components/inputs/input";
 import SwitchInput from "@/components/inputs/switch-input";
-import Image from "next/image";
 import { Project } from "@/app/generated/prisma/browser";
 import useProjectLogic from "./useProjectLogic";
 import ImageInput from "@/components/inputs/image-input";
+import SelectInput from "@/components/inputs/select-input";
+import { projectTypes } from "@/lib/utils";
+import { TechnologiesSelect } from "../../inputs/technologies-select";
 
 type Props = {
     project: Project | boolean;
@@ -16,9 +18,10 @@ type Props = {
     enabledLength: number;
     projectsHost: string;
     projectsSource: string;
+    uniqueTechnologies: string[];
 }
 
-export default function AddProject({ project, setproject, projectsLength = 1, enabledLength = 1, projectsHost, projectsSource }: Props) {
+export default function AddProject({ project, setproject, projectsLength = 1, enabledLength = 1, projectsHost, projectsSource, uniqueTechnologies }: Props) {
 
     const {
         t,
@@ -77,10 +80,13 @@ export default function AddProject({ project, setproject, projectsLength = 1, en
                             </DialogTitle>
                         </DialogHeader>
 
-                        <Input name="name" label="name" register={register} errors={errors} />
+                        <Input name="name" register={register} errors={errors} />
 
-                        <Input name="code" label="code" register={register} errors={errors} />
-                        <Input name="demo" label="demo" register={register} errors={errors} />
+                        <SelectInput name="type" control={control} errors={errors} options={projectTypes} />
+
+                        <Input name="code" register={register} errors={errors} />
+                        <Input name="demo" register={register} errors={errors} />
+                        <Input name="video" register={register} errors={errors} />
 
                         <Input name="description_de" label={`${t("description")} (DE)`} register={register} errors={errors} withoutTranslate />
                         <Input name="description_en" label={`${t("description")} (EN)`} register={register} errors={errors} withoutTranslate />
@@ -88,6 +94,8 @@ export default function AddProject({ project, setproject, projectsLength = 1, en
                         <ImageInput src={projectsHost + watchImage} name="image" register={register} errors={errors} />
                         <ImageInput src={projectsHost + watchMockup} name="mockup" register={register} errors={errors} />
                         <ImageInput src={projectsHost + watchLogo} name="logo" register={register} errors={errors} />
+
+                        <TechnologiesSelect control={control} name="technologies" options={uniqueTechnologies} />
 
                         <SwitchInput name="enabled" control={control} />
 
