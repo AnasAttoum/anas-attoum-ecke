@@ -1,7 +1,7 @@
 import Header from '@/layouts/header/header';
 import ScrollToTop from '@/lib/scroll-to-top';
-import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/layouts/sidebar/sidebar';
+import SidebarProviderHandler from '@/layouts/sidebar/sidebar-provider-handler';
 
 type Props = {
   children: React.ReactNode;
@@ -10,7 +10,7 @@ type Props = {
 export default async function Layout({ children }: Props) {
 
   return (
-    <SidebarProvider>
+    <SidebarProviderHandler>
       <AppSidebar />
       <main className='w-full'>
         <ScrollToTop />
@@ -19,6 +19,6 @@ export default async function Layout({ children }: Props) {
           {children}
         </div>
       </main>
-    </SidebarProvider>
+    </SidebarProviderHandler>
   )
 }
