@@ -10,6 +10,7 @@ import ImageInput from "@/components/inputs/image-input";
 import SelectInput from "@/components/inputs/select-input";
 import { projectTypes } from "@/lib/utils";
 import { TechnologiesSelect } from "../../inputs/technologies-select";
+import EditorInput from "@/components/inputs/editor/editor-input";
 
 type Props = {
     project: Project | boolean;
@@ -88,8 +89,8 @@ export default function AddProject({ project, setproject, projectsLength = 1, en
                         <Input name="demo" register={register} errors={errors} />
                         <Input name="video" register={register} errors={errors} />
 
-                        <Input name="description_de" label={`${t("description")} (DE)`} register={register} errors={errors} withoutTranslate />
-                        <Input name="description_en" label={`${t("description")} (EN)`} register={register} errors={errors} withoutTranslate />
+                        <EditorInput name="description_de" label={`${t("description")} (DE)`} control={control} errors={errors} withoutTranslate />
+                        <EditorInput name="description_en" label={`${t("description")} (EN)`} control={control} errors={errors} withoutTranslate />
 
                         <ImageInput src={projectsHost + watchImage} name="image" register={register} errors={errors} />
                         <ImageInput src={projectsHost + watchMockup} name="mockup" register={register} errors={errors} />
