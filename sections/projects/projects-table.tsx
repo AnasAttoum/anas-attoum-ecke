@@ -54,6 +54,7 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
             await checkIfResIsOk(t, res, router);
 
             setConfirmed(false);
+            setCreateNewOrder(false);
         } catch (error) {
             catchError(t, error)
         } finally {
@@ -202,9 +203,9 @@ export function ProjectItem(
                     {t(type)}
 
                     <div className="flex justify-center items-center gap-2">
-                        {/* <ToggleEnableDialog item={project} projectsHost={projectsHost} />
-                            <EditButton openDialog={() => setproject(project)} />
-                            <DeleteDialog item={project} projectsHost={projectsHost} /> */}
+                        <ToggleEnableDialog item={project} projectsHost={projectsHost} />
+                        <EditButton openDialog={() => setproject(project)} />
+                        <DeleteDialog item={project} projectsHost={projectsHost} />
                     </div>
                 </div>
             </ToAnimationWrapper>

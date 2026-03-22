@@ -4,8 +4,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
+import { ClassValue } from "clsx";
 
-export default function PhotoViewer({ src, alt, }: { src: string; alt: string; }) {
+export default function PhotoViewer({ src, alt, className }: { src: string; alt: string; className?: ClassValue }) {
     const [open, setOpen] = useState(false);
 
     return (
@@ -13,11 +14,12 @@ export default function PhotoViewer({ src, alt, }: { src: string; alt: string; }
             <div
                 className={cn(
                     "relative w-full h-full",
-                    !open && "cursor-zoom-in"
+                    !open && "cursor-zoom-in",
+                    className
                 )}
                 onClick={() => setOpen(true)}
             >
-                <Image src={src} alt={alt} fill unoptimized className="object-contain" />
+                <Image src={src} alt={alt} fill unoptimized className={cn("object-contain")} />
             </div>
 
             {open && createPortal(

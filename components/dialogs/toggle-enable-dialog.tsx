@@ -25,7 +25,7 @@ export default function ToggleEnableDialog({ item, skillsHost, projectsHost }: P
     const handleSwitch = async () => {
         try {
             setLoading(true);
-            const res = await fetch(`/api/skills/${id}`, {
+            const res = await fetch(`/api/${skillsHost ? "skills" : "projects"}/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-type": "application/json"
@@ -52,7 +52,7 @@ export default function ToggleEnableDialog({ item, skillsHost, projectsHost }: P
                 <DialogContent className="flex flex-col items-center gap-10">
                     <DialogHeader>
                         <div className='relative mx-auto size-12'>
-                            <Image src={skillsHost + image} alt={name} fill className="object-contain" />
+                            <Image src={(skillsHost ?? projectsHost) + image} alt={name} fill className="object-contain" />
                         </div>
                         <DialogTitle className="mx-auto">
                             {t.rich(enabled ? "disable-confirm" : "enable-confirm", {

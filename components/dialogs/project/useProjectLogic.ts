@@ -67,15 +67,12 @@ export default function useProjectLogic(
     register,
     handleSubmit,
     reset,
-    getValues,
-    setValue,
     control,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     defaultValues,
     resolver: zodResolver(formSchema),
   });
-  console.log('getValues: ', getValues());
 
   const onSubmit = async (values: FormValues) => {
     try {
@@ -126,8 +123,6 @@ export default function useProjectLogic(
     onSubmit,
     errors,
     isSubmitting,
-    getValues,
-    setValue,
     control,
     isEditing,
     watchImage,

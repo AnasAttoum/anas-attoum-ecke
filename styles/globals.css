@@ -135,7 +135,7 @@ section {
   @apply text-red-500 text-sm mt-1;
 }
 
-.transition{
+.transition {
   @apply transition-all duration-400;
 }
 

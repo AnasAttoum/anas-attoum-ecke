@@ -31,8 +31,6 @@ export default function AddProject({ project, setproject, projectsLength = 1, en
         isSubmitting,
         onSubmit,
         register,
-        getValues,
-        setValue,
         control,
         isEditing,
         watchImage,

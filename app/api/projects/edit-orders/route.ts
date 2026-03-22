@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import verifyToken from "../../verify-token";
-import { Skill } from "@/app/generated/prisma/client";
+import { Project } from "@/app/generated/prisma/client";
 
 export async function PUT(req: NextRequest) {
   const isValid = await verifyToken(req);
@@ -16,8 +16,8 @@ export async function PUT(req: NextRequest) {
 
   try {
     await Promise.all(
-      data.map(({ id, order }: Skill) =>
-        prisma.skill.update({
+      data.map(({ id, order }: Project) =>
+        prisma.project.update({
           where: { id },
           data: { order },
         }),
