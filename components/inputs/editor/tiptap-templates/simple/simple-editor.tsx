@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { EditorContent, EditorContext, useEditor } from "@tiptap/react"
+import { EditorContent, EditorContext, useCurrentEditor, useEditor } from "@tiptap/react"
 
 // --- Tiptap Core Extensions ---
 import { StarterKit } from "@tiptap/starter-kit"
@@ -13,6 +13,8 @@ import { Highlight } from "@tiptap/extension-highlight"
 import { Subscript } from "@tiptap/extension-subscript"
 import { Superscript } from "@tiptap/extension-superscript"
 import { Selection } from "@tiptap/extensions"
+import { TextStyle } from '@tiptap/extension-text-style'
+import { Color } from '@tiptap/extension-color'
 
 // --- UI Primitives ---
 import { Button } from "@/components/inputs/editor/tiptap-ui-primitive/button"
@@ -72,6 +74,7 @@ import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils"
 
 // --- Styles ---
 import "@/components/inputs/editor/tiptap-templates/simple/simple-editor.scss"
+import { Span } from "../../tiptap-extension/span"
 
 const MainToolbarContent = ({
   onHighlighterClick,
@@ -82,6 +85,7 @@ const MainToolbarContent = ({
   onLinkClick: () => void
   isMobile: boolean
 }) => {
+  const { editor } = useCurrentEditor();
   return (
     <>
       <Spacer />
@@ -106,6 +110,18 @@ const MainToolbarContent = ({
       <ToolbarSeparator />
 
       <ToolbarGroup>
+        <Button
+          type="button"
+          onClick={() =>
+            editor
+              ?.chain()
+              .focus()
+              .toggleMark('span', { class: 'text-primary' })
+              .run()
+          }
+        >
+          Ecke
+        </Button>
         <MarkButton type="bold" />
         <MarkButton type="italic" />
         <MarkButton type="strike" />
@@ -218,6 +234,9 @@ export function SimpleEditor({ value = "", onChange }: Props) {
       TaskList,
       TaskItem.configure({ nested: true }),
       Highlight.configure({ multicolor: true }),
+      Span,
+      TextStyle,
+      Color,
       Image,
       Typography,
       Superscript,
