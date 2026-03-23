@@ -6,6 +6,8 @@ type Props = {
 
 export default function EditButton({ openDialog }: Props) {
     return (
-        <Pen onClick={openDialog} className='p-0.5 cursor-pointer text-dark' />
+        <div>
+            <Pen onClick={openDialog} className='p-0.5 cursor-pointer text-dark' />
+        </div>
     )
 }

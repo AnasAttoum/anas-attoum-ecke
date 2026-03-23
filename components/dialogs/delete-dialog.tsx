@@ -47,7 +47,9 @@ export default function DeleteDialog({ item, skillsHost, projectsHost }: Props) 
 
     return (
         <>
-            <Trash onClick={() => setOpen(true)} className='p-0.5 cursor-pointer text-red-400' />
+            <div>
+                <Trash onClick={() => setOpen(true)} className='p-0.5 cursor-pointer text-red-400' />
+            </div>
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="flex flex-col items-center gap-10">
                     <DialogHeader>

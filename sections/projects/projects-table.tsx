@@ -18,6 +18,8 @@ import Projects from "./projects";
 import PhotoViewer from "@/components/photo/photo-viewer";
 import FilterChip from "@/components/buttons/filter-chip/filter-chip";
 import AddProject from "@/components/dialogs/project/add-project";
+import ShowButton from "@/components/buttons/show/show";
+import { paths } from "@/lib/paths";
 
 export default function ProjectsTable({ projects, projectsHost, projectsSource, initialType, uniqueTechnologies }: { projects: Project[]; projectsHost: string; projectsSource: string; initialType?: string; uniqueTechnologies: string[] }) {
     const t = useTranslations();
@@ -203,6 +205,7 @@ export function ProjectItem(
                     {t(type)}
 
                     <div className="flex justify-center items-center gap-2">
+                        <ShowButton href={`${paths.projects}/${name.toLowerCase().replaceAll(" ", "-")}`} />
                         <ToggleEnableDialog item={project} projectsHost={projectsHost} />
                         <EditButton openDialog={() => setproject(project)} />
                         <DeleteDialog item={project} projectsHost={projectsHost} />
