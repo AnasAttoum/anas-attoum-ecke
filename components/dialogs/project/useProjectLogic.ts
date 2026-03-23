@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useTranslations } from "next-intl";
 import { z } from "zod";
@@ -115,6 +115,10 @@ export default function useProjectLogic(
     control,
     name: "logo",
   });
+  const watchVideo = useWatch({
+    control,
+    name: "video",
+  });
 
   return {
     t,
@@ -127,6 +131,7 @@ export default function useProjectLogic(
     isEditing,
     watchImage,
     watchMockup,
-    watchLogo
+    watchLogo,
+    watchVideo,
   };
 }

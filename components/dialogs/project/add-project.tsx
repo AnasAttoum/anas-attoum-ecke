@@ -36,6 +36,7 @@ export default function AddProject({ project, setproject, projectsLength = 1, en
         watchImage,
         watchMockup,
         watchLogo,
+        watchVideo,
     } = useProjectLogic(project, setproject);
 
     return (
@@ -86,6 +87,7 @@ export default function AddProject({ project, setproject, projectsLength = 1, en
                         <Input name="code" register={register} errors={errors} />
                         <Input name="demo" register={register} errors={errors} />
                         <Input name="video" register={register} errors={errors} />
+                        {watchVideo && <iframe src={watchVideo} width="100%" height="480" allowFullScreen style={{ maxWidth: '100%', height: 'auto', aspectRatio: '480/229' }}></iframe>}
 
                         <EditorInput name="description_de" label={`${t("description")} (DE)`} control={control} errors={errors} withoutTranslate />
                         <EditorInput name="description_en" label={`${t("description")} (EN)`} control={control} errors={errors} withoutTranslate />
