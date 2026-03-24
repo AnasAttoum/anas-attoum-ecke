@@ -62,9 +62,9 @@ import { HighlighterIcon } from "@/components/inputs/editor/tiptap-icons/highlig
 import { LinkIcon } from "@/components/inputs/editor/tiptap-icons/link-icon"
 
 // --- Hooks ---
-import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
-import { useWindowSize } from "@/hooks/use-window-size"
-import { useCursorVisibility } from "@/hooks/use-cursor-visibility"
+import { useIsBreakpoint } from "@/components/inputs/editor/hooks/use-is-breakpoint"
+import { useWindowSize } from "@/components/inputs/editor/hooks/use-window-size"
+import { useCursorVisibility } from "@/components/inputs/editor/hooks/use-cursor-visibility"
 
 // --- Components ---
 // import { ThemeToggle } from "@/components/inputs/editor/tiptap-templates/simple/theme-toggle"

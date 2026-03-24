@@ -4,9 +4,9 @@ import { forwardRef, useMemo, useRef, useState } from "react"
 import { type Editor } from "@tiptap/react"
 
 // --- Hooks ---
-import { useMenuNavigation } from "@/hooks/use-menu-navigation"
-import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
-import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
+import { useMenuNavigation } from "@/components/inputs/editor/hooks/use-menu-navigation"
+import { useIsBreakpoint } from "@/components/inputs/editor/hooks/use-is-breakpoint"
+import { useTiptapEditor } from "@/components/inputs/editor/hooks/use-tiptap-editor"
 
 // --- Icons ---
 import { BanIcon } from "@/components/inputs/editor/tiptap-icons/ban-icon"

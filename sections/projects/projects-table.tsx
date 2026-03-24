@@ -20,6 +20,9 @@ import FilterChip from "@/components/buttons/filter-chip/filter-chip";
 import AddProject from "@/components/dialogs/project/add-project";
 import ShowButton from "@/components/buttons/show/show";
 import { paths } from "@/lib/paths";
+import { Badge } from "@/components/ui/badge";
+import { RotateCcw } from "lucide-react";
+import LetterAnimation from "@/components/gsap/letter-animation";
 
 export default function ProjectsTable({ projects, projectsHost, projectsSource, initialType, uniqueTechnologies }: { projects: Project[]; projectsHost: string; projectsSource: string; initialType?: string; uniqueTechnologies: string[] }) {
     const t = useTranslations();
@@ -28,19 +31,35 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
     const [confirmed, setConfirmed] = useState(false);
     const [loading, setLoading] = useState(false);
     const [createNewOrder, setCreateNewOrder] = useState(false);
+
     const [project, setproject] = useState<Project | boolean>(false);
     const [editedprojects, setEditedprojects] = useState(projects);
+
     const [currentType, setCurrentType] = useState(initialType ?? null);
+    const [technologiesFilter, setTechnologiesFilter] = useState<string[]>([]);
+
     const enabledprojects = editedprojects.filter(({ enabled }) => enabled);
 
     const types = [...new Set(projects.map(p => p.type))].sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
+    const filterApplied = !!currentType || !!technologiesFilter.length;
+
     useEffect(() => {
-        if (!currentType)
+        if (!filterApplied)
             setEditedprojects(projects)
-        else
-            setEditedprojects(projects.filter(({ type }) => type === currentType))
-    }, [projects, setEditedprojects, currentType])
+        else {
+            let result = [...projects];
+            if (currentType)
+                result = result.filter(({ type }) => type === currentType)
+            if (technologiesFilter.length)
+                result = result.filter(({ technologies }) =>
+                    technologiesFilter.some((tech) =>
+                        technologies.includes(tech)
+                    )
+                );
+            setEditedprojects(result)
+        }
+    }, [projects, setEditedprojects, currentType, technologiesFilter, filterApplied])
 
     const submit = async () => {
         try {
@@ -78,11 +97,12 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
             <AddProject project={project} setproject={setproject} projectsLength={projects.length} enabledLength={enabledprojects.length} projectsHost={projectsHost} projectsSource={projectsSource} uniqueTechnologies={uniqueTechnologies} />
 
             <div tabIndex={0} className="flex flex-wrap justify-center gap-5">
-                <FilterChip
+                {filterApplied && <FilterChip
                     active={!currentType}
-                    label="all"
-                    onClick={() => { setCurrentType(null); resetOrder() }}
-                />
+                    label="reset"
+                    icon={RotateCcw}
+                    onClick={() => { setCurrentType(null); setTechnologiesFilter([]); resetOrder(); }}
+                />}
                 {types.map((el) => (
                     <FilterChip
                         key={el}
@@ -91,6 +111,22 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
                         onClick={() => setCurrentType(el)}
                     />
                 ))}
+                <div className="flex flex-wrap justify-between gap-2">
+                    {uniqueTechnologies.map((item) => {
+                        const found = technologiesFilter.includes(item);
+                        return (
+                            <Badge key={item} variant={found ? "default" : "secondary"} className="flex items-center gap-1 cursor-pointer"
+                                onClick={() => {
+                                    if (found)
+                                        setTechnologiesFilter((prev) => prev.filter((el) => el !== item))
+                                    else
+                                        setTechnologiesFilter((prev) => [...prev, item])
+                                }}>
+                                {item}
+                            </Badge>
+                        )
+                    })}
+                </div>
             </div>
 
             <DragDropProvider
@@ -108,19 +144,22 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
                 }}
             >
                 <div className="flex flex-col gap-5 text-black mb-5">
-                    {editedprojects.map((project, index) =>
-                        <ProjectItem
-                            key={project.id}
-                            project={project}
-                            index={index}
-                            confirmed={confirmed}
-                            setproject={setproject}
-                            orderChanged={project.id !== projects?.[index]?.id}
-                            projectsHost={projectsHost}
-                            createNewOrder={createNewOrder}
-                            currentType={currentType}
-                        />
-                    )}
+                    {!editedprojects.length
+                        ?
+                        <LetterAnimation className="h3 text-foreground" title="no-results-found" />
+                        : editedprojects.map((project, index) =>
+                            <ProjectItem
+                                key={project.id}
+                                project={project}
+                                index={index}
+                                confirmed={confirmed}
+                                setproject={setproject}
+                                orderChanged={project.id !== projects?.[index]?.id}
+                                projectsHost={projectsHost}
+                                createNewOrder={createNewOrder}
+                                filterApplied={filterApplied}
+                            />
+                        )}
                 </div>
             </DragDropProvider>
 
@@ -140,7 +179,7 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
 
             <div>
                 {!confirmed
-                    ? createNewOrder && !currentType
+                    ? createNewOrder && !currentType && !technologiesFilter.length
                         ? <ToAnimation to="top">
                             <button onClick={() => setConfirmed(true)} className="secondaryBtn">{t("next")}</button>
                         </ToAnimation>
@@ -161,7 +200,7 @@ export default function ProjectsTable({ projects, projectsHost, projectsSource, 
 }
 
 export function ProjectItem(
-    { project, index, confirmed, setproject, orderChanged, projectsHost, createNewOrder, currentType }: {
+    { project, index, confirmed, setproject, orderChanged, projectsHost, createNewOrder, filterApplied }: {
         project: Project;
         index: number;
         confirmed: boolean;
@@ -169,7 +208,7 @@ export function ProjectItem(
         orderChanged: boolean;
         projectsHost: string;
         createNewOrder: boolean;
-        currentType: string | null;
+        filterApplied: boolean;
     }) {
     const { id, name, order, image, type, enabled } = project;
 
@@ -191,7 +230,7 @@ export function ProjectItem(
                     className={cn(
                         "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-1 min-[350px]:grid-cols-2 md:grid-cols-4 gap-5",
                         !enabled && "bg-[repeating-linear-gradient(-45deg,transparent,transparent_10px,var(--secondary)_10px,var(--secondary)_20px)]",
-                        orderChanged && !currentType && "border-4 border-primary"
+                        orderChanged && !filterApplied && "border-4 border-primary"
                     )}
                 >
                     <div ref={handleRef} className="absolute top-0 -left-4 flex items-center h-full cursor-grab">

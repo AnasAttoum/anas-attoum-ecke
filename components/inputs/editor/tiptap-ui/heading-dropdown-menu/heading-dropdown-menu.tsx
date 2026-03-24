@@ -6,7 +6,7 @@ import { forwardRef, useCallback, useState } from "react"
 import { ChevronDownIcon } from "@/components/inputs/editor/tiptap-icons/chevron-down-icon"
 
 // --- Hooks ---
-import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
+import { useTiptapEditor } from "@/components/inputs/editor/hooks/use-tiptap-editor"
 
 // --- Tiptap UI ---
 import { HeadingButton } from "@/components/inputs/editor/tiptap-ui/heading-button"

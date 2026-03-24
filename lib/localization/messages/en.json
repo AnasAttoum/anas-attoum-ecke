@@ -113,5 +113,6 @@
   "center": "Align Center",
   "right": "Align Right",
   "justify": "Justify",
-  "open-in-new-window": "Open in new window"
+  "open-in-new-window": "Open in new window",
+  "no-results-found": "No results found"
 }

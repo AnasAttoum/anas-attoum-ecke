@@ -4,8 +4,8 @@ import { forwardRef, useCallback, useEffect, useState } from "react"
 import type { Editor } from "@tiptap/react"
 
 // --- Hooks ---
-import { useIsBreakpoint } from "@/hooks/use-is-breakpoint"
-import { useTiptapEditor } from "@/hooks/use-tiptap-editor"
+import { useIsBreakpoint } from "@/components/inputs/editor/hooks/use-is-breakpoint"
+import { useTiptapEditor } from "@/components/inputs/editor/hooks/use-tiptap-editor"
 
 // --- Icons ---
 import { CornerDownLeftIcon } from "@/components/inputs/editor/tiptap-icons/corner-down-left-icon"
