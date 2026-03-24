@@ -403,7 +403,7 @@ function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="sidebar-content"
       data-sidebar="content"
       className={cn(
-        "flex min-h-0 flex-1 flex-col gap-2 transition overflow-auto group-data-[collapsible=icon]:overflow-hidden bg-primary rounded-md shadow",
+        "flex min-h-0 flex-1 flex-col gap-2 transition overflow-auto group-data-[collapsible=icon]:overflow-hidden bg-primary md:rounded-s-md rounded-e-md shadow",
         isVisible && "md:mt-20",
         className
       )}
@@ -539,7 +539,13 @@ function SidebarMenuButton({
   tooltip?: string | React.ComponentProps<typeof TooltipContent>
 } & VariantProps<typeof sidebarMenuButtonVariants>) {
   const Comp = asChild ? Slot.Root : "button"
-  const { isMobile, state } = useSidebar()
+  const { isMobile, state, setOpenMobile } = useSidebar();
+
+  const handleClick = () => {
+    if (isMobile) {
+      setOpenMobile(false)
+    }
+  }
 
   const button = (
     <Comp
@@ -548,6 +554,7 @@ function SidebarMenuButton({
       data-size={size}
       data-active={isActive}
       className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
+      onClick={handleClick}
       {...props}
     />
   )
