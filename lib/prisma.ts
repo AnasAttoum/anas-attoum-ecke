@@ -1,4 +1,4 @@
-import { PrismaClient } from "../app/generated/prisma/client";
+import { Information, PrismaClient } from "../app/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 
 const globalForPrisma = global as unknown as {
@@ -28,3 +28,11 @@ export const prismaConfigFindProject = (projectName: string) => ({
     name: { equals: projectName.replaceAll("-", " "), mode: "insensitive" },
   },
 });
+
+export const prismaSelect = (...args: (keyof Information)[]) => {
+  const select: Record<string, true> = {};
+  args.forEach((el) => (select[el] = true));
+  return {
+    select,
+  };
+};
