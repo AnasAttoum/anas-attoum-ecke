@@ -52,3 +52,41 @@ model Project {
 
   createdAt DateTime @default(now())
 }
+
+model Information {
+  id                  String @id @default(uuid())
+  title_de            String
+  title_en            String
+  subTitle_de         String
+  subTitle_en         String
+  about_de            String
+  about_en            String
+  anas_attoum_1       String
+  anas_attoum_2       String
+  cv_de               String
+  cv_en               String
+  contact_title_de    String
+  contact_title_en    String
+  contact_subTitle_de String
+  contact_subTitle_en String
+
+  createdAt DateTime @default(now())
+}
+
+model Admin {
+  id            String @id @default(cuid())
+  password_hash String
+
+  createdAt DateTime @default(now())
+}
+
+model SocialLink {
+  id    String @id @default(uuid())
+  order Int
+  alt   String
+  src   String
+  href  String
+
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
