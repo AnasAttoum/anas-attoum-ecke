@@ -4,6 +4,14 @@ import { ProjectFindManyArgs } from "@/app/generated/prisma/models";
 import { ENV } from "@/lib/env";
 import prisma, { prismaConfig } from "@/lib/prisma";
 import ProjectsTable from "@/sections/projects/projects-table";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata() {
+  const t = await getTranslations();
+  return {
+    title: t("projects"),
+  };
+}
 
 export default async function Projects({ searchParams }: { searchParams: Promise<{ type?: string }> }) {
   const search = await searchParams;
