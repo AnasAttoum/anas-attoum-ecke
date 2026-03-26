@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "../../ui/dialog";
 import { Button } from "../../ui/button";
 import { SparkleIcon, Tv } from "lucide-react";
-import useSkillLogic from "./useSkillLogic";
+import useSkillLogic from "./use-skill-logic";
 import Input from "@/components/inputs/input";
 import { ColorPicker } from "@/components/inputs/color-picker";
 import SwitchInput from "@/components/inputs/switch-input";

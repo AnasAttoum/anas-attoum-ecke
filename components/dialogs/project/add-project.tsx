@@ -5,7 +5,7 @@ import { SparkleIcon, Tv } from "lucide-react";
 import Input from "@/components/inputs/input";
 import SwitchInput from "@/components/inputs/switch-input";
 import { Project } from "@/app/generated/prisma/browser";
-import useProjectLogic from "./useProjectLogic";
+import useProjectLogic from "./use-project-logic";
 import ImageInput from "@/components/inputs/image-input";
 import SelectInput from "@/components/inputs/select-input";
 import { projectTypes } from "@/lib/utils";
