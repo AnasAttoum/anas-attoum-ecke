@@ -11,7 +11,7 @@ export default async function Layout({ children }: Props) {
     <>
       <ScrollToTop />
       <Header />
-        {children}
+      {children}
     </>
   )
 }

@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { links } from '@/lib/paths';
-import { Separator } from '@/components/ui/separator';
 import { usePathname } from '@/lib/localization/navigation';
 import { useTranslations } from 'next-intl';
 
@@ -15,7 +14,7 @@ export default function Menu() {
 
     return (
         <SidebarMenu>
-            {links.map(({ icon: Icon, label, link }, index) => {
+            {links.map(({ icon: Icon, label, link }) => {
                 const isActive = link === pathname;
                 return link
                     ? (
@@ -31,7 +30,7 @@ export default function Menu() {
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
-                            {index !== links.length - 1 && <Separator />}
+                            {/* {index !== links.length - 1 && <Separator />} */}
                         </div>
                     ) : (
                         <div key={label}>
