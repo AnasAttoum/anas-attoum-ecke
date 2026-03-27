@@ -55,7 +55,7 @@ export const ModelName = {
   Project: 'Project',
   Information: 'Information',
   Admin: 'Admin',
-  SocialLink: 'SocialLink'
+  SocialMedia: 'SocialMedia'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -139,17 +139,17 @@ export const AdminScalarFieldEnum = {
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
 
 
-export const SocialLinkScalarFieldEnum = {
+export const SocialMediaScalarFieldEnum = {
   id: 'id',
   order: 'order',
   alt: 'alt',
-  src: 'src',
+  image: 'image',
   href: 'href',
   enabled: 'enabled',
   createdAt: 'createdAt'
 } as const
 
-export type SocialLinkScalarFieldEnum = (typeof SocialLinkScalarFieldEnum)[keyof typeof SocialLinkScalarFieldEnum]
+export type SocialMediaScalarFieldEnum = (typeof SocialMediaScalarFieldEnum)[keyof typeof SocialMediaScalarFieldEnum]
 
 
 export const SortOrder = {

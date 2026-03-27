@@ -38,7 +38,7 @@ export type Information = Prisma.InformationModel
  */
 export type Admin = Prisma.AdminModel
 /**
- * Model SocialLink
+ * Model SocialMedia
  * 
  */
-export type SocialLink = Prisma.SocialLinkModel
+export type SocialMedia = Prisma.SocialMediaModel

@@ -388,7 +388,7 @@ export const ModelName = {
   Project: 'Project',
   Information: 'Information',
   Admin: 'Admin',
-  SocialLink: 'SocialLink'
+  SocialMedia: 'SocialMedia'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -404,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "skill" | "project" | "information" | "admin" | "socialLink"
+    modelProps: "skill" | "project" | "information" | "admin" | "socialMedia"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -704,77 +704,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    SocialLink: {
-      payload: Prisma.$SocialLinkPayload<ExtArgs>
-      fields: Prisma.SocialLinkFieldRefs
+    SocialMedia: {
+      payload: Prisma.$SocialMediaPayload<ExtArgs>
+      fields: Prisma.SocialMediaFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.SocialLinkFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload> | null
+          args: Prisma.SocialMediaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.SocialLinkFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          args: Prisma.SocialMediaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload>
         }
         findFirst: {
-          args: Prisma.SocialLinkFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload> | null
+          args: Prisma.SocialMediaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.SocialLinkFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          args: Prisma.SocialMediaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload>
         }
         findMany: {
-          args: Prisma.SocialLinkFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload>[]
+          args: Prisma.SocialMediaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload>[]
         }
         create: {
-          args: Prisma.SocialLinkCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          args: Prisma.SocialMediaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload>
         }
         createMany: {
-          args: Prisma.SocialLinkCreateManyArgs<ExtArgs>
+          args: Prisma.SocialMediaCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.SocialLinkCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload>[]
+          args: Prisma.SocialMediaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload>[]
         }
         delete: {
-          args: Prisma.SocialLinkDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          args: Prisma.SocialMediaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload>
         }
         update: {
-          args: Prisma.SocialLinkUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          args: Prisma.SocialMediaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload>
         }
         deleteMany: {
-          args: Prisma.SocialLinkDeleteManyArgs<ExtArgs>
+          args: Prisma.SocialMediaDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.SocialLinkUpdateManyArgs<ExtArgs>
+          args: Prisma.SocialMediaUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.SocialLinkUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload>[]
+          args: Prisma.SocialMediaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload>[]
         }
         upsert: {
-          args: Prisma.SocialLinkUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          args: Prisma.SocialMediaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SocialMediaPayload>
         }
         aggregate: {
-          args: Prisma.SocialLinkAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSocialLink>
+          args: Prisma.SocialMediaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSocialMedia>
         }
         groupBy: {
-          args: Prisma.SocialLinkGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SocialLinkGroupByOutputType>[]
+          args: Prisma.SocialMediaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SocialMediaGroupByOutputType>[]
         }
         count: {
-          args: Prisma.SocialLinkCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SocialLinkCountAggregateOutputType> | number
+          args: Prisma.SocialMediaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SocialMediaCountAggregateOutputType> | number
         }
       }
     }
@@ -882,17 +882,17 @@ export const AdminScalarFieldEnum = {
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
 
 
-export const SocialLinkScalarFieldEnum = {
+export const SocialMediaScalarFieldEnum = {
   id: 'id',
   order: 'order',
   alt: 'alt',
-  src: 'src',
+  image: 'image',
   href: 'href',
   enabled: 'enabled',
   createdAt: 'createdAt'
 } as const
 
-export type SocialLinkScalarFieldEnum = (typeof SocialLinkScalarFieldEnum)[keyof typeof SocialLinkScalarFieldEnum]
+export type SocialMediaScalarFieldEnum = (typeof SocialMediaScalarFieldEnum)[keyof typeof SocialMediaScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1092,7 +1092,7 @@ export type GlobalOmitConfig = {
   project?: Prisma.ProjectOmit
   information?: Prisma.InformationOmit
   admin?: Prisma.AdminOmit
-  socialLink?: Prisma.SocialLinkOmit
+  socialMedia?: Prisma.SocialMediaOmit
 }
 
 /* Types for Logging */

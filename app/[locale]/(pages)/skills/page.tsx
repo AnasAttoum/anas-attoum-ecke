@@ -16,5 +16,5 @@ export async function generateMetadata() {
 export default async function Skills() {
   const skills = await prisma.skill.findMany(prismaConfig as SkillFindManyArgs);
 
-  return <SkillsTable skills={skills.map((skill) => ({ ...skill, image: skill.image }))} skillsHost={ENV.skillsHost!} skillsSource={ENV.skillsSource!} />;
+  return <SkillsTable skills={skills} skillsHost={ENV.skillsHost!} skillsSource={ENV.skillsSource!} />;
 }

@@ -21,5 +21,5 @@ export default async function Projects({ searchParams }: { searchParams: Promise
   const allTechnologies = projects.flatMap(p => p.technologies);
   const uniqueTechnologies = Array.from(new Set(allTechnologies));
 
-  return <ProjectsTable projects={projects.map((project) => ({ ...project, image: project.image }))} projectsHost={ENV.projectsHost!} projectsSource={ENV.projectsSource!} initialType={type} uniqueTechnologies={uniqueTechnologies} />;
+  return <ProjectsTable projects={projects} projectsHost={ENV.projectsHost!} projectsSource={ENV.projectsSource!} initialType={type} uniqueTechnologies={uniqueTechnologies} />;
 }

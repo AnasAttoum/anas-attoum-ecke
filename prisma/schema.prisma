@@ -80,11 +80,11 @@ model Admin {
   createdAt DateTime @default(now())
 }
 
-model SocialLink {
+model SocialMedia {
   id    String @id @default(uuid())
   order Int
   alt   String
-  src   String
+  image   String
   href  String
 
   enabled   Boolean  @default(true)
