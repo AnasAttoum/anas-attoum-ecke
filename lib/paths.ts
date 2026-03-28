@@ -1,10 +1,11 @@
-import { ChevronsLeftRightEllipsis, Heart, Telescope } from "lucide-react";
+import { ChevronsLeftRightEllipsis, Heart, RadioTower, Telescope } from "lucide-react";
 
 export const paths = {
   login: "/",
   cv: "/cv",
   skills: "/skills",
   projects: "/projects",
+  socialMedia: "/social-media",
 };
 
 export const links = [
@@ -13,4 +14,6 @@ export const links = [
   { label: "pages" },
   { label: "skills", link: paths.skills, icon: Heart },
   { label: "projects", link: paths.projects, icon: ChevronsLeftRightEllipsis },
+  { label: "contact" },
+  { label: "social-media", link: paths.socialMedia, icon: RadioTower },
 ];

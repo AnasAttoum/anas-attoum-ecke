@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       new URL(`${process.env.SKILLS_IMAGES_HOST!}**`),
       new URL(`${process.env.PROJECTS_IMAGES_HOST!}**`),
       new URL(`${process.env.ANAS_ATTOUM_IMAGES_HOST!}**`),
+      new URL(`${process.env.SOCIAL_IMAGES_HOST!}**`),
     ],
   },
 };
