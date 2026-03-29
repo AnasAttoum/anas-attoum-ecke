@@ -71,6 +71,8 @@
   "edit-skill": "Edit skill",
   "add-project": "Add new project",
   "edit-project": "Edit project",
+  "add-social": "Add social media profile",
+  "edit-social": "Edit social media profile",
   "password": "Password",
   "logout": "Logout",
   "logout-title": "Confirm Logout",
@@ -116,5 +118,6 @@
   "open-in-new-window": "Open in new window",
   "no-results-found": "No results found",
   "cv": "CV",
-  "social-media": "Social media"
+  "social-media": "Social media",
+  "alt": "Alt text"
 }

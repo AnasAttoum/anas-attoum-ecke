@@ -15,6 +15,7 @@ import { useRouter } from "@/lib/localization/navigation";
 import { catchError, checkIfResIsOk } from "@/lib/errors";
 import PhotoViewer from "@/components/photo/photo-viewer";
 import { SocialMedia } from "@/app/generated/prisma/browser";
+import AddSocial from "@/components/dialogs/social-media/add-social";
 
 export default function SocialTable({ socials, socialsHost, socialsSource }: { socials: SocialMedia[]; socialsHost: string; socialsSource: string }) {
 
@@ -64,7 +65,7 @@ export default function SocialTable({ socials, socialsHost, socialsSource }: { s
     return (
         <section className="flex flex-col gap-5">
 
-            {/* <AddSocial social={social} setSocial={setSocial} socialsLength={socials.length} enabledLength={enabledsocials.length} socialsHost={socialsHost} socialsSource={socialsSource} /> */}
+            <AddSocial social={social} setSocial={setSocial} socialsLength={socials.length} enabledLength={enabledSocials.length} socialsHost={socialsHost} socialsSource={socialsSource} />
 
             <DragDropProvider
                 onDragEnd={(event) => {

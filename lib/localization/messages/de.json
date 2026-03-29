@@ -71,6 +71,8 @@
   "edit-skill": "Fähigkeit bearbeiten",
   "add-project": "Neues Projekt hinzufügen",
   "edit-project": "Projekt bearbeiten",
+  "add-social": "Neues Social-Media-Profil hinzufügen",
+  "edit-social": "Social-Media-Profil bearbeiten",
   "password": "Passwort",
   "logout": "Abmelden",
   "logout-title": "Abmelden bestätigen",
@@ -116,5 +118,6 @@
   "open-in-new-window": "In neuem Fenster öffnen",
   "no-results-found": "Keine Ergebnisse gefunden",
   "cv": "Lebenslauf",
-  "social-media": "Soziale Medien"
+  "social-media": "Soziale Medien",
+  "alt": "Alternativtext"
 }
