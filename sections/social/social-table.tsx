@@ -16,6 +16,7 @@ import { catchError, checkIfResIsOk } from "@/lib/errors";
 import PhotoViewer from "@/components/photo/photo-viewer";
 import { SocialMedia } from "@/app/generated/prisma/browser";
 import AddSocial from "@/components/dialogs/social-media/add-social";
+import ShowButton from "@/components/buttons/show/show";
 
 export default function SocialTable({ socials, socialsHost, socialsSource }: { socials: SocialMedia[]; socialsHost: string; socialsSource: string }) {
 
@@ -163,12 +164,13 @@ export function SocialItem(
 
                     <strong>{alt}</strong>
 
-                    <PhotoViewer src={socialsHost + image} alt={alt} />
+                    <PhotoViewer src={socialsHost + image} alt={alt} className="col-span-2" />
 
                     <div className="flex justify-center items-center gap-2">
-                        {/* <ToggleEnableDialog item={social} socialsHost={socialsHost} />
+                        <ShowButton href={href} newTab />
+                        <ToggleEnableDialog item={social} socialsHost={socialsHost} />
                         <EditButton openDialog={() => setSocial(social)} />
-                        <DeleteDialog item={social} socialsHost={socialsHost} /> */}
+                        <DeleteDialog item={social} socialsHost={socialsHost} />
                     </div>
                 </div>
             </ToAnimationWrapper>

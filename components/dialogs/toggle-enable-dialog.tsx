@@ -2,30 +2,35 @@ import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogT
 import { Button } from '../ui/button'
 import { useTranslations } from 'next-intl'
 import { Switch } from '../ui/switch'
-import { Project, Skill } from '@/app/generated/prisma/browser'
+import { Project, Skill, SocialMedia } from '@/app/generated/prisma/browser'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from '@/lib/localization/navigation'
 import { catchError, checkIfResIsOk } from '@/lib/errors'
 
 type Props = {
-    item: Skill | Project;
+    item: Skill | Project | SocialMedia;
     skillsHost?: string;
     projectsHost?: string;
+    socialsHost?: string;
 }
 
-export default function ToggleEnableDialog({ item, skillsHost, projectsHost }: Props) {
+export default function ToggleEnableDialog({ item, skillsHost, projectsHost, socialsHost }: Props) {
     const t = useTranslations();
     const router = useRouter();
-    const { id, name, image, enabled } = item;
+    const { id, image, enabled } = item;
 
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
 
+    const target = skillsHost ? "skills" : projectsHost ? "projects" : "social-media";
+    const targetHost = skillsHost ?? projectsHost ?? socialsHost;
+    const targetName = socialsHost ? (item as SocialMedia)?.alt : (item as Skill)?.name;
+
     const handleSwitch = async () => {
         try {
             setLoading(true);
-            const res = await fetch(`/api/${skillsHost ? "skills" : "projects"}/${id}`, {
+            const res = await fetch(`/api/${target}/${id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-type": "application/json"
@@ -52,11 +57,11 @@ export default function ToggleEnableDialog({ item, skillsHost, projectsHost }: P
                 <DialogContent className="flex flex-col items-center gap-10">
                     <DialogHeader>
                         <div className='relative mx-auto size-12'>
-                            <Image src={(skillsHost ?? projectsHost) + image} alt={name} fill className="object-contain" />
+                            <Image src={targetHost + image} alt={targetName} fill unoptimized className="object-contain" />
                         </div>
                         <DialogTitle className="mx-auto">
                             {t.rich(enabled ? "disable-confirm" : "enable-confirm", {
-                                name,
+                                name: targetName,
                                 strong: (chunks) => <strong>{chunks}</strong>
                             })}
                         </DialogTitle>

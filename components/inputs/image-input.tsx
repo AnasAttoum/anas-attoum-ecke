@@ -17,9 +17,9 @@ export default function ImageInput<T extends FieldValues>({ register, errors, na
     const [zoomIn, setZoomIn] = useState(false);
 
     return (
-        <>
+        <div className="flex flex-col gap-3">
             <Input name={name} label={label ?? name} register={register} errors={errors} />
-            <Image src={src} alt={t(label ?? name)} width={!zoomIn ? 50 : 500} height={!zoomIn ? 50 : 500} className="mx-auto transition" onClick={() => setZoomIn((prev) => !prev)} />
-        </>
+            <Image src={src} alt={t(label ?? name)} width={!zoomIn ? 50 : 460} height={!zoomIn ? 50 : 460} unoptimized className="mx-auto transition cursor-pointer" onClick={() => setZoomIn((prev) => !prev)} />
+        </div>
     );
 }
