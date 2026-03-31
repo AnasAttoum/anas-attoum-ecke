@@ -48,6 +48,7 @@ export default function SkillsTable({ skills, skillsHost, skillsSource }: { skil
             await checkIfResIsOk(t, res, router);
 
             setConfirmed(false);
+            setCreateNewOrder(false);
         } catch (error) {
             catchError(t, error)
         } finally {

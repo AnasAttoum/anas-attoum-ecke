@@ -17,6 +17,7 @@ import PhotoViewer from "@/components/photo/photo-viewer";
 import { SocialMedia } from "@/app/generated/prisma/browser";
 import AddSocial from "@/components/dialogs/social-media/add-social";
 import ShowButton from "@/components/buttons/show/show";
+import SocialLinks from "@/components/social-links/social-links";
 
 export default function SocialTable({ socials, socialsHost, socialsSource }: { socials: SocialMedia[]; socialsHost: string; socialsSource: string }) {
 
@@ -26,6 +27,7 @@ export default function SocialTable({ socials, socialsHost, socialsSource }: { s
     const [confirmed, setConfirmed] = useState(false);
     const [loading, setLoading] = useState(false);
     const [createNewOrder, setCreateNewOrder] = useState(false);
+    console.log('createNewOrder: ', createNewOrder);
     const [social, setSocial] = useState<SocialMedia | boolean>(false);
     const [editedSocials, setEditedSocials] = useState(socials);
     const enabledSocials = editedSocials.filter(({ enabled }) => enabled);
@@ -48,6 +50,7 @@ export default function SocialTable({ socials, socialsHost, socialsSource }: { s
             await checkIfResIsOk(t, res, router);
 
             setConfirmed(false);
+            setCreateNewOrder(false);
         } catch (error) {
             catchError(t, error)
         } finally {
@@ -99,8 +102,8 @@ export default function SocialTable({ socials, socialsHost, socialsSource }: { s
             </DragDropProvider>
 
             {confirmed &&
-                <div className="pb-5 bg-primary/50 rounded-md">
-                    {/* <socials socials={enabledsocials} socialsHost={socialsHost} /> */}
+                <div className="py-5 bg-primary/50 rounded-md">
+                    <SocialLinks links={enabledSocials} socialsHost={socialsHost} />
                 </div>
             }
 
