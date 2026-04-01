@@ -403,7 +403,7 @@ function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="sidebar-content"
       data-sidebar="content"
       className={cn(
-        "flex min-h-0 flex-1 flex-col gap-2 transition overflow-auto group-data-[collapsible=icon]:overflow-hidden bg-primary md:rounded-s-md rounded-e-md shadow",
+        "flex min-h-0 flex-1 flex-col gap-2 transition overflow-auto group-data-[collapsible=icon]:overflow-hidden bg-linear-to-b from-primary to-primary/60 backdrop-blur-md md:rounded-s-md rounded-e-md shadow",
         isVisible && "md:mt-20",
         className
       )}

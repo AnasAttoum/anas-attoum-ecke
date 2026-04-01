@@ -119,5 +119,9 @@
   "no-results-found": "Keine Ergebnisse gefunden",
   "cv": "Lebenslauf",
   "social-media": "Soziale Medien",
-  "alt": "Alternativtext"
+  "alt": "Alternativtext",
+  "title": "Titel",
+  "subTitle": "Untertitel",
+  "contact-title": "Kontakt Titel",
+  "contact-subTitle": "Kontakt Untertitel"
 }
