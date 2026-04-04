@@ -5,22 +5,22 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "@/lib/localization/navigation";
 import { useEffect, useMemo } from "react";
 import { catchError, checkIfResIsOk } from "@/lib/errors";
-import { CvType } from "@/app/[locale]/(pages)/cv/page";
+import { PicsType } from "@/app/[locale]/(pages)/pictures/page";
 
-export default function useCvLogic(info: CvType) {
+export default function usePicsLogic(info: PicsType) {
   const t = useTranslations();
   const router = useRouter();
 
   const formSchema = z.object({
-    cv_de: z.string().min(1, t("validation.required")),
-    cv_en: z.string().min(1, t("validation.required")),
+    anas_attoum_1: z.string().min(1, t("validation.required")),
+    anas_attoum_2: z.string().min(1, t("validation.required")),
   });
   type FormValues = z.infer<typeof formSchema>;
 
   const defaultValues = useMemo(
     () => ({
-      cv_de: "",
-      cv_en: "",
+      anas_attoum_1: "",
+      anas_attoum_2: "",
     }),
     [],
   );
@@ -57,14 +57,14 @@ export default function useCvLogic(info: CvType) {
     reset(info);
   }, [reset, info]);
 
-  const watchCvDe = useWatch({
+  const watchAnasAttoum1 = useWatch({
     control,
-    name: "cv_de",
+    name: "anas_attoum_1",
   });
 
-  const watchCvEn = useWatch({
+  const watchAnasAttoum2 = useWatch({
     control,
-    name: "cv_en",
+    name: "anas_attoum_2",
   });
 
   return {
@@ -74,8 +74,8 @@ export default function useCvLogic(info: CvType) {
     onSubmit,
     errors,
     isSubmitting,
-    watchCvDe,
-    watchCvEn,
+    watchAnasAttoum1,
+    watchAnasAttoum2,
     isDirty,
   };
 }

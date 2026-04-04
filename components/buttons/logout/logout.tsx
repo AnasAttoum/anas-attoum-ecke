@@ -36,16 +36,16 @@ export default function Logout() {
                         <TriangleAlertIcon className='text-white size-6' />
                     </div>
                     <DialogTitle className="mx-auto">{t("logout-title")}</DialogTitle>
-                    <DialogDescription>
+                    <DialogDescription className="text-foreground">
                         {t("logout-description")}
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="max-sm:w-full">
                     <DialogClose asChild>
-                        <Button type="button">{t("close")}</Button>
+                        <Button type="button" variant="outline">{t("close")}</Button>
                     </DialogClose>
 
-                    <Button type="button" variant="outline" onClick={handleLogout}>{t("logout")}</Button>
+                    <Button type="button" onClick={handleLogout}>{t("logout")}</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

@@ -1,14 +1,14 @@
 "use client";
 
-import { Information } from "@/app/generated/prisma/browser";
 import useCvLogic from "./use-cv-logic";
 import LetterAnimation from "@/components/gsap/letter-animation";
 import SubmitButton from "@/components/buttons/submit-button/submit-button";
 import ToAnimation from "@/components/gsap/to-animation";
 import FileInput from "@/components/inputs/file-input";
+import { CvType } from "@/app/[locale]/(pages)/cv/page";
 
 type Props = {
-  info: Pick<Information, "cv_de" | "cv_en">
+  info: CvType;
 };
 
 export default function CV({ info }: Props) {

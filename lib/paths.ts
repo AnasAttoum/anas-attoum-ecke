@@ -1,8 +1,9 @@
-import { ArrowDownAZ, ChevronsLeftRightEllipsis, Heart, RadioTower, Telescope } from "lucide-react";
+import { ArrowDownAZ, ChevronsLeftRightEllipsis, Heart, RadioTower, Telescope, Wallpaper } from "lucide-react";
 
 export const paths = {
   login: "/",
   about: "/about",
+  pics: "/pictures",
   cv: "/cv",
   skills: "/skills",
   projects: "/projects",
@@ -12,6 +13,7 @@ export const paths = {
 export const links = [
   { label: "bit" },
   { label: "about", link: paths.about, icon: ArrowDownAZ },
+  { label: "my-pics", link: paths.pics, icon: Wallpaper },
   { label: "cv", link: paths.cv, icon: Telescope },
   { label: "pages" },
   { label: "skills", link: paths.skills, icon: Heart },
