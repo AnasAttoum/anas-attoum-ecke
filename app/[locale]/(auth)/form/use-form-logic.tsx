@@ -42,7 +42,7 @@ export default function useFormLogic() {
             }
 
             toasterSuccess(t("toaster.access-granted"));
-            router.push(paths.skills)
+            router.push(paths.about)
         } catch (error) {
             if (error instanceof Error) {
                 toasterError(error?.message || t("toaster.error"));
