@@ -13,7 +13,7 @@ export default function PhotoViewer({ src, alt, className }: { src: string; alt:
         <>
             <div
                 className={cn(
-                    "relative w-full h-full",
+                    "relative w-full h-full min-h-6",
                     !open && "cursor-zoom-in",
                     className
                 )}

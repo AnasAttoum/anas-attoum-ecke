@@ -81,7 +81,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <Tooltip delay={200}>
         <TooltipTrigger
           data-slot="tiptap-button"
-          className={cn("tiptap-button", className)}
+          className={cn("tiptap-button cursor-pointer", className)}
           ref={ref}
           data-style={variant}
           data-size={size}

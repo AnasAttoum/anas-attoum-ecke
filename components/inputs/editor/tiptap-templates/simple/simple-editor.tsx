@@ -15,6 +15,7 @@ import { Superscript } from "@tiptap/extension-superscript"
 import { Selection } from "@tiptap/extensions"
 import { TextStyle } from '@tiptap/extension-text-style'
 import { Color } from '@tiptap/extension-color'
+import Bold from '@tiptap/extension-bold'
 
 // --- UI Primitives ---
 import { Button } from "@/components/inputs/editor/tiptap-ui-primitive/button"
@@ -119,6 +120,7 @@ const MainToolbarContent = ({
               .toggleMark('span', { class: 'text-primary' })
               .run()
           }
+          className="cursor-pointer"
         >
           Ecke
         </Button>
@@ -242,6 +244,11 @@ export function SimpleEditor({ value = "", onChange }: Props) {
       Superscript,
       Subscript,
       Selection,
+      Bold.extend({
+      renderHTML({ HTMLAttributes }) {
+        return ['span', { ...HTMLAttributes, style: 'font-weight: 600' }, 0]
+      },
+    }),
       ImageUploadNode.configure({
         accept: "image/*",
         maxSize: MAX_FILE_SIZE,

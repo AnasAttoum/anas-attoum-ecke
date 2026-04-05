@@ -4,7 +4,7 @@ import { ClassValue } from "clsx";
 import Image from "next/image";
 
 export default function SocialLinks({ links, socialsHost, className }: { links: SocialMedia[]; socialsHost: string; className?: ClassValue }) {
-    console.log('links: ', links);
+
     return (
         <div className={clsx("flex justify-center items-center gap-5", className)}>
             {links.map(({ alt, href, image }) => (

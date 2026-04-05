@@ -27,7 +27,6 @@ export default function SocialTable({ socials, socialsHost, socialsSource }: { s
     const [confirmed, setConfirmed] = useState(false);
     const [loading, setLoading] = useState(false);
     const [createNewOrder, setCreateNewOrder] = useState(false);
-    console.log('createNewOrder: ', createNewOrder);
     const [social, setSocial] = useState<SocialMedia | boolean>(false);
     const [editedSocials, setEditedSocials] = useState(socials);
     const enabledSocials = editedSocials.filter(({ enabled }) => enabled);
@@ -156,7 +155,7 @@ export function SocialItem(
             <ToAnimationWrapper preventAnimation={orderChanged || createNewOrder} index={index}>
                 <div
                     className={cn(
-                        "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-1 min-[350px]:grid-cols-2 md:grid-cols-4 gap-5",
+                        "relative shadow dark:shadow-dark rounded-md bg-light p-5 px-10 grid grid-cols-1 md:grid-cols-4 gap-5",
                         !enabled && "bg-[repeating-linear-gradient(-45deg,transparent,transparent_10px,var(--secondary)_10px,var(--secondary)_20px)]",
                         orderChanged && "border-4 border-primary"
                     )}
