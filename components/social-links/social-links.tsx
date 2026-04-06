@@ -6,14 +6,14 @@ import Image from "next/image";
 export default function SocialLinks({ links, socialsHost, className }: { links: SocialMedia[]; socialsHost: string; className?: ClassValue }) {
 
     return (
-        <div className={clsx("flex justify-center items-center gap-5", className)}>
+        <div className={clsx("flex flex-wrap justify-center items-center mt-15 gap-5", className)}>
             {links.map(({ alt, href, image }) => (
                 <a
                     key={alt}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block simpleBtnFocus bg-light hover:bg-gray! shadow-md transition"
+                    className="inline-block simpleBtnFocus p-2! bg-light hover:bg-gray! shadow-md transition"
                 >
                     <Image
                         src={socialsHost + image}
