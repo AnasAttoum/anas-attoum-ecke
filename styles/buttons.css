@@ -6,6 +6,9 @@
 .simpleBtnFocus {
   @apply rounded-full p-1 cursor-pointer hover:bg-gray-200 dark:hover:bg-neutral-800 focus:bg-gray-200 dark:focus:bg-neutral-800 transition;
 }
+.socialBtn {
+  @apply inline-block rounded-full p-2 shadow-md cursor-pointer bg-light hover:bg-primary/40 dark:hover:bg-primary/60 focus:bg-gray-200 transition;
+}
 
 /* --------------------------------- primaryBtn --------------------------------- */
 .primaryBtn {
