@@ -6,6 +6,8 @@ const raleway = Raleway({
   subsets: ["latin"],
 });
 
+export const revalidate = 60;
+
 export default function RootLayout({
   children,
 }: Readonly<{
